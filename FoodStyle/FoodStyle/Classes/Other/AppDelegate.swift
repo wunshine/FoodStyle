@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = GLOBAL_COLOR()
         let sb = UIStoryboard(name: "LaunchViewController", bundle: nil)
         let launchVC = WXNavigationController(rootViewController: sb.instantiateInitialViewController()!)
         self.window?.rootViewController = launchVC
