@@ -22,24 +22,30 @@ class TastyFoodViewController: UITableViewController {
         return left
     }()
 
+    lazy var titleView : UIButton = {
+        var title = WXButton(frame: CGRectMake(0, 0, 60, 44), title: "全部", target: self, action: "all")
+        return title
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "美食"
         self.view.backgroundColor = UIColor.yellowColor()
-
+        self.navigationItem.titleView = titleView
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.leftButton)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView:self.rightButton)
+        choosed()
 
     }
 
     @objc func choosed(){
-        selectedButton?.selected = false
-        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
-        leftButton.selected = true
-        selectedButton = leftButton
+            selectedButton?.selected = false
+            selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+            leftButton.selected = true
+            selectedButton = leftButton
 
-        if leftButton.selected == true{
-            leftButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+            if leftButton.selected == true{
+                leftButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
         }
     }
 
@@ -51,6 +57,17 @@ class TastyFoodViewController: UITableViewController {
 
         if rightButton.selected == true{
             rightButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+        }
+    }
+
+    @objc func all(){
+        selectedButton?.selected = false
+        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        titleView.selected = true
+        selectedButton = titleView
+
+        if titleView.selected == true{
+            titleView.titleLabel?.font = UIFont.systemFontOfSize(16.0)
         }
     }
 
