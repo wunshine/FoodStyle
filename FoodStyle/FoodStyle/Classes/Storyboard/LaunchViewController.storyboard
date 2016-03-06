@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dcm-kP-M99">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Launch View Controller-->
+        <scene sceneID="V9b-bz-uxh">
+            <objects>
+                <viewController id="dcm-kP-M99" customClass="LaunchViewController" customModule="FoodStyle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hvR-cG-er4"/>
+                        <viewControllerLayoutGuide type="bottom" id="aUR-LM-1ZZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sQ0-O3-Te2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="np0-t5-5sb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bav-Mq-jzU">
+                                <rect key="frame" x="87" y="315" width="200" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="QQ号码登录" image="login_qq_normal" backgroundImage="login_button_back_normal"/>
+                                <state key="highlighted" image="login_qq_hl" backgroundImage="login_button_back_hl">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="QQLoginButtonClick:" destination="dcm-kP-M99" eventType="touchUpInside" id="sYG-fV-2Lx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FG-6Q-JS0">
+                                <rect key="frame" x="87" y="365" width="200" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="新浪微博登录" image="login_sina_normal" backgroundImage="login_button_back_normal"/>
+                                <state key="highlighted" image="login_sina_hl" backgroundImage="login_button_back_hl">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="SinaLoginButttonClick:" destination="dcm-kP-M99" eventType="touchUpInside" id="aug-9B-jde"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkh-cr-M5K">
+                                <rect key="frame" x="87" y="415" width="200" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="豆果账号登录" image="login_douguo_normal" backgroundImage="login_button_back_normal"/>
+                                <state key="highlighted" image="login_douguo_hl" backgroundImage="login_button_back_hl">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="DouGuoLoginButtonClick:" destination="dcm-kP-M99" eventType="touchUpInside" id="J9K-ef-o9M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-yv-xa2">
+                                <rect key="frame" x="136" y="475" width="103" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="手机号码注册" image="register_phone_normal"/>
+                                <state key="highlighted" image="register_phone_hl">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="RegisteButtonClick:" destination="dcm-kP-M99" eventType="touchUpInside" id="xG0-EV-VHZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="np0-t5-5sb" firstAttribute="leading" secondItem="sQ0-O3-Te2" secondAttribute="leading" id="DXp-Bb-reY"/>
+                            <constraint firstItem="np0-t5-5sb" firstAttribute="top" secondItem="hvR-cG-er4" secondAttribute="bottom" constant="-20" id="K5T-xJ-YKT"/>
+                            <constraint firstItem="fkh-cr-M5K" firstAttribute="centerX" secondItem="sQ0-O3-Te2" secondAttribute="centerX" id="NZl-h7-EPQ"/>
+                            <constraint firstItem="RrY-yv-xa2" firstAttribute="centerX" secondItem="sQ0-O3-Te2" secondAttribute="centerX" id="OGC-Hx-0eI"/>
+                            <constraint firstItem="fkh-cr-M5K" firstAttribute="top" secondItem="5FG-6Q-JS0" secondAttribute="bottom" constant="10" id="Pbx-yg-ne3"/>
+                            <constraint firstItem="5FG-6Q-JS0" firstAttribute="centerX" secondItem="sQ0-O3-Te2" secondAttribute="centerX" id="TZ9-ew-G1o"/>
+                            <constraint firstAttribute="trailing" secondItem="np0-t5-5sb" secondAttribute="trailing" id="V4R-Q2-vKt"/>
+                            <constraint firstItem="Bav-Mq-jzU" firstAttribute="centerX" secondItem="sQ0-O3-Te2" secondAttribute="centerX" id="Vew-0z-RXk"/>
+                            <constraint firstItem="RrY-yv-xa2" firstAttribute="top" secondItem="fkh-cr-M5K" secondAttribute="bottom" constant="20" id="eCk-wP-Ke9"/>
+                            <constraint firstItem="aUR-LM-1ZZ" firstAttribute="top" secondItem="np0-t5-5sb" secondAttribute="bottom" id="pqZ-3B-yXu"/>
+                            <constraint firstItem="5FG-6Q-JS0" firstAttribute="top" secondItem="Bav-Mq-jzU" secondAttribute="bottom" constant="10" id="rcx-jy-g3o"/>
+                            <constraint firstItem="Bav-Mq-jzU" firstAttribute="top" secondItem="hvR-cG-er4" secondAttribute="bottom" constant="295" id="tAO-Ge-brY"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nbe-k4-fQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="193.5" y="322.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Default" width="320" height="480"/>
+        <image name="login_button_back_hl" width="200" height="40"/>
+        <image name="login_button_back_normal" width="200" height="40"/>
+        <image name="login_douguo_hl" width="19" height="16"/>
+        <image name="login_douguo_normal" width="19" height="16"/>
+        <image name="login_qq_hl" width="19" height="16"/>
+        <image name="login_qq_normal" width="19" height="16"/>
+        <image name="login_sina_hl" width="19" height="16"/>
+        <image name="login_sina_normal" width="19" height="16"/>
+        <image name="register_phone_hl" width="19" height="16"/>
+        <image name="register_phone_normal" width="19" height="16"/>
+    </resources>
+</document>
