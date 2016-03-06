@@ -10,6 +10,8 @@ import UIKit
 
 class TastyFoodViewController: UITableViewController {
 
+    var selectedButton:UIButton?
+
     lazy var rightButton : UIButton = {
         var right = WXButton(frame: CGRectMake(0, 0, 60, 44), title: "关注", target: self, action: "follow")
         return right
@@ -31,12 +33,25 @@ class TastyFoodViewController: UITableViewController {
     }
 
     @objc func choosed(){
+        selectedButton?.selected = false
+        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        leftButton.selected = true
+        selectedButton = leftButton
 
-
+        if leftButton.selected == true{
+            leftButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+        }
     }
 
     @objc func follow(){
-        self.rightButton.selected = true
+        selectedButton?.selected = false
+        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        rightButton.selected = true
+        selectedButton = rightButton
+
+        if rightButton.selected == true{
+            rightButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+        }
     }
 
     override func didReceiveMemoryWarning() {

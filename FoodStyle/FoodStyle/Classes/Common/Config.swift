@@ -19,9 +19,6 @@ func GLOBAL_COLOR()->UIColor{
 
 func WXButton(frame frame:CGRect, title:String, target:AnyObject?, action:Selector)->UIButton{
     let button = UIButton(frame: frame)
-    if button.selected == true{
-        button.titleLabel?.font = UIFont.systemFontOfSize(16.0)
-    }
     button.setTitle(title, forState: UIControlState.Normal)
     button.titleLabel?.font = UIFont.systemFontOfSize(12.0)
     button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
