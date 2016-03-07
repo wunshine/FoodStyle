@@ -38,7 +38,7 @@ class TastyFoodViewController: UITableViewController {
 
     }
 
-    @objc func choosed(){
+    @objc private func choosed(){
             selectedButton?.selected = false
             selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
             leftButton.selected = true
@@ -49,7 +49,7 @@ class TastyFoodViewController: UITableViewController {
         }
     }
 
-    @objc func follow(){
+    @objc private func follow(){
         selectedButton?.selected = false
         selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
         rightButton.selected = true
@@ -60,7 +60,7 @@ class TastyFoodViewController: UITableViewController {
         }
     }
 
-    @objc func all(){
+    @objc private func all(){
         selectedButton?.selected = false
         selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
         titleView.selected = true

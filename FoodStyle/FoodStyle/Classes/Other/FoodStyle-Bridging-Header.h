@@ -3,3 +3,6 @@
 //
 
 #import "TencentOpenAPI/TencentOAuth.h"
+#import "WeiboSDK/Weibosdk.h"
+#import "WeiboSDK/WeiboUser.h"
+

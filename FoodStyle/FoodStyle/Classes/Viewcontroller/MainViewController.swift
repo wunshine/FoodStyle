@@ -17,7 +17,7 @@ class MainViewController: UITabBarController {
         setTabbar()
     }
 
-    func setChildViewController(){
+    private func setChildViewController(){
         let tastyFoodVC = navigationControllerWithVC(TastyFoodViewController())
         let messageVC = navigationControllerWithVC(MessageViewController())
         let mineVC = navigationControllerWithVC(MineViewController())
@@ -29,12 +29,12 @@ class MainViewController: UITabBarController {
         self.addChildViewController(mineVC)
     }
 
-    @objc func navigationControllerWithVC(viewController:UIViewController)->UINavigationController{
+     @objc private func navigationControllerWithVC(viewController:UIViewController)->UINavigationController{
         let nav =  WXNavigationController(rootViewController: viewController)
         return nav
     }
 
-    func setTabbar(){
+    private func setTabbar(){
         self.tabBarItem.image = UIImage(named: "tab_button_businesses")
     }
 

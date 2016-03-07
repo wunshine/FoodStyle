@@ -7,50 +7,16 @@
 //
 
 import UIKit
-class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLoginDelegate {
+class LaunchViewController: UIViewController{
 
     var tencentOAuth:TencentOAuth?
+    var weiboUser:WeiboUser?
 
     var permissions:NSArray?
 
-    /**
-     delegate implementation
-     */
-
-    func tencentDidLogin() {
-        if tencentOAuth!.accessToken == nil{
-            print("error_get_accessToken")
-        }else{
-            print(tencentOAuth!.accessToken)
-        }
-    }
-
-    func tencentDidNotLogin(cancelled: Bool) {
-        if cancelled {
-            print("用户退出")
-        }else{
-            self.noticeError("登录失败")
-        }
-    }
-
-    func tencentDidNotNetWork() {
-        self.noticeInfo("未联网!", autoClear: true, autoClearTime: 1)
-
-    }
-
-    func getUserInfoResponse(response: APIResponse!) {
-
-    }
-
-    func tencentDidLogout() {
-        self.noticeInfo("退出登录", autoClear: true, autoClearTime: 1)
-
-    }
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tencentOAuth = TencentOAuth(appId: APPID(), andDelegate: self)
+        self.tencentOAuth = TencentOAuth(appId: TENCENT_APPID(), andDelegate: self)
         self.permissions = ["get_user_info","get_simple_userinfo"]
 
     }
@@ -73,6 +39,13 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
     }
 
     @IBAction func SinaLoginButttonClick(sender: AnyObject) {
+
+        WeiboSDK.registerApp(SINA_APPKEY())
+        let request = WBAuthorizeRequest()
+        request.scope = "all"
+        request.userInfo = ["myKey":"myValue"]
+        WeiboSDK.sendRequest(request)
+        
         UIView.animateWithDuration(0.5) { () -> Void in
             self.view.frame.origin.y += SCREEN_RECT().height
             UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
@@ -106,3 +79,58 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
     */
 
 }
+
+extension LaunchViewController : TencentLoginDelegate{
+    func tencentDidLogin() {
+        if tencentOAuth!.accessToken == nil{
+            print("error_get_accessToken")
+        }else{
+            print(tencentOAuth!.accessToken)
+        }
+    }
+
+    func tencentDidNotLogin(cancelled: Bool) {
+        if cancelled {
+            print("用户退出")
+        }else{
+            self.noticeError("登录失败")
+        }
+    }
+
+    func tencentDidNotNetWork() {
+        self.noticeInfo("未联网!", autoClear: true, autoClearTime: 1)
+
+    }
+}
+
+extension LaunchViewController:TencentSessionDelegate {
+
+    func getUserInfoResponse(response: APIResponse!) {
+
+    }
+
+    func tencentDidLogout() {
+        self.noticeInfo("退出登录", autoClear: true, autoClearTime: 1)
+        
+    }
+}
+
+extension LaunchViewController : WBHttpRequestDelegate,WeiboSDKDelegate{
+    func didReceiveWeiboRequest(request: WBBaseRequest!) {
+
+    }
+
+    func didReceiveWeiboResponse(response: WBBaseResponse!) {
+
+        if response.isKindOfClass(WBAuthorizeResponse){
+            let res = response as! WBAuthorizeResponse
+            if (res.statusCode as! Int) == 0 {
+                let dict = ["userID":res.userID,
+                    "accessToken":res.accessToken]
+                print(dict)
+            }
+        }
+    }
+}
+
+

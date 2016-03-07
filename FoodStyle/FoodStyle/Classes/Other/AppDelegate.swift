@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        UITabBar.appearance().tintColor = UIColor.orangeColor()
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = GLOBAL_COLOR()
         let sb = UIStoryboard(name: "LaunchViewController", bundle: nil)
@@ -46,11 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-            return TencentOAuth.HandleOpenURL(url)
+            return TencentOAuth.HandleOpenURL(url) || WeiboSDK.handleOpenURL(url, delegate: LaunchViewController())
     }
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        return TencentOAuth.HandleOpenURL(url)
+        return TencentOAuth.HandleOpenURL(url) || WeiboSDK.handleOpenURL(url, delegate: LaunchViewController())
     }
 }
 

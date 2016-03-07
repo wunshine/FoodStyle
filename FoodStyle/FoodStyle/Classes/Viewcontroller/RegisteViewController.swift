@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class RegisteViewController: UIViewController,UIScrollViewDelegate {
+class RegisteViewController: UIViewController {
 
     lazy var scrollView : UIScrollView = {
         var scrollView = UIScrollView()
@@ -59,11 +59,11 @@ class RegisteViewController: UIViewController,UIScrollViewDelegate {
         return nextButton
     }()
 
-    @objc func nextButtonClick(){
+    @objc private func nextButtonClick(){
 
     }
 
-    @objc func mailRegiste(){
+    @objc private func mailRegiste(){
         self.navigationController?.pushViewController(MailRegisteViewController(), animated: true)
 
     }
@@ -87,12 +87,8 @@ class RegisteViewController: UIViewController,UIScrollViewDelegate {
         // Do any additional setup after loading the view.
     }
 
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        scrollView.setContentOffset(CGPointZero, animated: true)
-    }
 
-
-    @objc func back(){
+    @objc private func back(){
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
@@ -129,5 +125,11 @@ class RegisteViewController: UIViewController,UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+extension RegisteViewController : UIScrollViewDelegate{
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollView.setContentOffset(CGPointZero, animated: true)
+    }
 }
 

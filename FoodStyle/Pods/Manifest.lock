@@ -1,13 +1,16 @@
 PODS:
   - Alamofire (3.2.1)
   - SnapKit (0.19.1)
+  - WeiboSDK (3.1.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.2.1)
   - SnapKit (~> 0.19.1)
+  - WeiboSDK
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  WeiboSDK: acb067053668102cf07d01aa7604350162c2e466
 
 COCOAPODS: 0.39.0

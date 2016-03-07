@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController,UIScrollViewDelegate {
+class LoginViewController: UIViewController {
 
     lazy var scrollView:UIScrollView = {
         var scrollView = UIScrollView(frame: SCREEN_RECT())
@@ -96,14 +96,6 @@ class LoginViewController: UIViewController,UIScrollViewDelegate {
     }
 
     /**
-     scrollViewDelegate
-     */
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        scrollView.setContentOffset(CGPointZero, animated: true)
-    }
-
-    /**
      layoutSubViews
      */
 
@@ -150,5 +142,10 @@ class LoginViewController: UIViewController,UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension LoginViewController:UIScrollViewDelegate{
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollView.setContentOffset(CGPointZero, animated: true)
+    }
 }
