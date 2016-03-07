@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 //let SCREEN_RECT = UIScreen.mainScreen().bounds
+
+func APPID()->String{
+    return "1105231278"
+}
+
 func SCREEN_RECT()->CGRect{
     return UIScreen.mainScreen().bounds
 }

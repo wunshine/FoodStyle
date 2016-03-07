@@ -19,7 +19,7 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
 
     func tencentDidLogin() {
         if tencentOAuth!.accessToken == nil{
-            print("error")
+            print("error_get_accessToken")
         }else{
             print(tencentOAuth!.accessToken)
         }
@@ -27,15 +27,14 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
 
     func tencentDidNotLogin(cancelled: Bool) {
         if cancelled {
-            print("用户取消")
+            print("用户退出")
         }else{
-            print("登录失败")
+            self.noticeError("登录失败")
         }
-
     }
 
     func tencentDidNotNetWork() {
-        print("您的网络有问题")
+        self.noticeInfo("未联网!", autoClear: true, autoClearTime: 1)
 
     }
 
@@ -44,13 +43,14 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
     }
 
     func tencentDidLogout() {
+        self.noticeInfo("退出登录", autoClear: true, autoClearTime: 1)
 
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tencentOAuth = TencentOAuth(appId: "1105231278", andDelegate: self)
+        self.tencentOAuth = TencentOAuth(appId: APPID(), andDelegate: self)
         self.permissions = ["get_user_info","get_simple_userinfo"]
 
     }

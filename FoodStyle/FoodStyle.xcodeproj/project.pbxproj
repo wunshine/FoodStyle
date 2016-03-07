@@ -37,6 +37,7 @@
 		B35F2C651C89F08500F9D1D1 /* FoodStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F2C641C89F08500F9D1D1 /* FoodStyleTests.swift */; };
 		B35F2C701C89F08500F9D1D1 /* FoodStyleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F2C6F1C89F08500F9D1D1 /* FoodStyleUITests.swift */; };
 		B35F2C861C89F51200F9D1D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35F2C851C89F51200F9D1D1 /* Assets.xcassets */; };
+		B3A1C8141C8D2B64000BF0B0 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C8131C8D2B64000BF0B0 /* SwiftNotice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		B35F2C6F1C89F08500F9D1D1 /* FoodStyleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStyleUITests.swift; sourceTree = "<group>"; };
 		B35F2C711C89F08500F9D1D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35F2C851C89F51200F9D1D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3A1C8131C8D2B64000BF0B0 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		FBD9D8B92CC7682F7E2CD40A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B35302091C8B3CD80026095B /* Config.swift */,
+				B3A1C8131C8D2B64000BF0B0 /* SwiftNotice.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				B353021C1C8B3CD80026095B /* LaunchViewController.swift in Sources */,
 				B35302191C8B3CD80026095B /* AppDelegate.swift in Sources */,
 				B35302411C8C5EEA0026095B /* TastyFoodViewController.swift in Sources */,
+				B3A1C8141C8D2B64000BF0B0 /* SwiftNotice.swift in Sources */,
 				B35302491C8C617A0026095B /* CameraViewController.swift in Sources */,
 				B35302171C8B3CD80026095B /* UIImage+extension.swift in Sources */,
 				B35302181C8B3CD80026095B /* Config.swift in Sources */,
