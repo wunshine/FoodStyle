@@ -14,6 +14,7 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.redColor()
         setChildViewController()
+        setTabbar()
     }
 
     func setChildViewController(){
@@ -32,6 +33,11 @@ class MainViewController: UITabBarController {
         let nav =  WXNavigationController(rootViewController: viewController)
         return nav
     }
+
+    func setTabbar(){
+        self.tabBarItem.image = UIImage(named: "tab_button_businesses")
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

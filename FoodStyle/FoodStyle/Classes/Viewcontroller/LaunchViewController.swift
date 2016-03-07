@@ -51,7 +51,7 @@ class LaunchViewController: UIViewController,TencentSessionDelegate, TencentLogi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tencentOAuth = TencentOAuth(appId: "1105231278", andDelegate: self)
-        self.permissions = ["get_user_info","get_simple_userinfo","add_t"]
+        self.permissions = ["get_user_info","get_simple_userinfo"]
 
     }
 

@@ -26,3 +26,10 @@ func WXButton(frame frame:CGRect, title:String, target:AnyObject?, action:Select
     button.addTarget(target, action: action, forControlEvents: .TouchDown)
     return button
 }
+
+func tabbarButton(normalImage normalImage:String)->UIButton{
+    let tabbar = UIButton()
+    tabbar.setImage(UIImage(named: normalImage), forState: UIControlState.Normal)
+    tabbar.setImage(UIImage(named: normalImage+"_hl"), forState: UIControlState.Highlighted)
+    return tabbar
+}
