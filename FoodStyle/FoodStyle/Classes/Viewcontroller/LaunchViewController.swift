@@ -17,8 +17,8 @@ class LaunchViewController: UIViewController{
         super.viewDidLoad()
         self.tencentOAuth = TencentOAuth(appId: TENCENT_APPID(), andDelegate: self)
         self.permissions = ["get_user_info","get_simple_userinfo"]
-
     }
+
 
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true 
@@ -46,11 +46,7 @@ class LaunchViewController: UIViewController{
         request.redirectURI = SINA_REDIRECTURL()
         request.userInfo = ["myKey":"myValue"]
         WeiboSDK.sendRequest(request)
-        
-//        UIView.animateWithDuration(0.5) { () -> Void in
-//            self.view.frame.origin.y += SCREEN_RECT().height
-//            UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
-//        }
+
     }
 
     @IBAction func DouGuoLoginButtonClick(sender: AnyObject) {
@@ -109,15 +105,22 @@ extension LaunchViewController:TencentSessionDelegate {
 extension LaunchViewController : WeiboSDKDelegate{
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
         if response.isKindOfClass(WBAuthorizeResponse){
-            let res = response as! WBAuthorizeResponse
-            if (res.statusCode as! Int) == 0 {
-                let dict = ["userID":res.userID,
-                    "accessToken":res.accessToken]
-                print(dict)
+//            let res = response as! WBAuthorizeResponse
+//            let code : NSInteger = 0
+//            let statusCode = (NSInteger)(res.statusCode)
+//            if statusCode == 0 {
+//                let dict = ["userID":res.userID,
+//                    "accessToken":res.accessToken]
+//                print(dict)
+
+                UIView.animateWithDuration(0.5) { () -> Void in
+                    self.view.frame.origin.y += SCREEN_RECT().height
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
+                }
             }
         }
-        print("hehe")
-    }
+//        print("hehe")
+//    }
 
     func didReceiveWeiboRequest(request: WBBaseRequest!) {
         print(request)

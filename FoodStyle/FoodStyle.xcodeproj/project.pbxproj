@@ -38,6 +38,8 @@
 		B35F2C701C89F08500F9D1D1 /* FoodStyleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35F2C6F1C89F08500F9D1D1 /* FoodStyleUITests.swift */; };
 		B35F2C861C89F51200F9D1D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35F2C851C89F51200F9D1D1 /* Assets.xcassets */; };
 		B3A1C8141C8D2B64000BF0B0 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A1C8131C8D2B64000BF0B0 /* SwiftNotice.swift */; };
+		B3A1C8161C8DC576000BF0B0 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3A1C8151C8DC576000BF0B0 /* Entitlements.plist */; };
+		B3A1C8191C8DC844000BF0B0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1C8181C8DC844000BF0B0 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,9 @@
 		B35F2C711C89F08500F9D1D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35F2C851C89F51200F9D1D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3A1C8131C8D2B64000BF0B0 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		B3A1C8151C8DC576000BF0B0 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		B3A1C8171C8DC844000BF0B0 /* FoodStyle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FoodStyle.entitlements; sourceTree = "<group>"; };
+		B3A1C8181C8DC844000BF0B0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FBD9D8B92CC7682F7E2CD40A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +113,7 @@
 				B35302351C8B3EB00026095B /* libz.tbd in Frameworks */,
 				B35302331C8B3EA30026095B /* libstdc++.tbd in Frameworks */,
 				B35302311C8B3E940026095B /* CoreTelephony.framework in Frameworks */,
+				B3A1C8191C8DC844000BF0B0 /* AudioToolbox.framework in Frameworks */,
 				B353022F1C8B3E860026095B /* libsqlite3.tbd in Frameworks */,
 				B353022D1C8B3E710026095B /* CoreGraphics.framework in Frameworks */,
 				B353022B1C8B3E630026095B /* SystemConfiguration.framework in Frameworks */,
@@ -138,6 +144,7 @@
 		6A147C093BB6AB7173F314C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3A1C8181C8DC844000BF0B0 /* AudioToolbox.framework */,
 				B35302341C8B3EB00026095B /* libz.tbd */,
 				B35302321C8B3EA30026095B /* libstdc++.tbd */,
 				B35302301C8B3E940026095B /* CoreTelephony.framework */,
@@ -251,9 +258,11 @@
 		B35F2C4E1C89F08500F9D1D1 /* FoodStyle */ = {
 			isa = PBXGroup;
 			children = (
+				B3A1C8171C8DC844000BF0B0 /* FoodStyle.entitlements */,
 				B35302051C8B3CD80026095B /* Classes */,
 				B35F2C851C89F51200F9D1D1 /* Assets.xcassets */,
 				B35F2C5B1C89F08500F9D1D1 /* Info.plist */,
+				B3A1C8151C8DC576000BF0B0 /* Entitlements.plist */,
 			);
 			path = FoodStyle;
 			sourceTree = "<group>";
@@ -357,6 +366,11 @@
 					B35F2C4B1C89F08500F9D1D1 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = DLAPUP575X;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
 					};
 					B35F2C5F1C89F08500F9D1D1 = {
 						CreatedOnToolsVersion = 7.2;
@@ -395,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3A1C8161C8DC576000BF0B0 /* Entitlements.plist in Resources */,
 				B35302391C8B40360026095B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				B353021A1C8B3CD80026095B /* LaunchViewController.storyboard in Resources */,
 				B35F2C861C89F51200F9D1D1 /* Assets.xcassets in Resources */,
@@ -609,6 +624,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FoodStyle/FoodStyle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -623,10 +641,13 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"SnapKit\"",
+					"-force_load",
+					"$(PROJECT_DIR)/Pods/WeiboSDK/libWeiboSDK/libWeiboSDK.a",
 					"-fobjc-arc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = code4Fun.FoodStyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodStyle/Classes/Other/FoodStyle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -639,6 +660,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FoodStyle/FoodStyle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,10 +677,13 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"SnapKit\"",
+					"-force_load",
+					"$(PROJECT_DIR)/Pods/WeiboSDK/libWeiboSDK/libWeiboSDK.a",
 					"-fobjc-arc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = code4Fun.FoodStyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodStyle/Classes/Other/FoodStyle-Bridging-Header.h";
 			};
 			name = Release;

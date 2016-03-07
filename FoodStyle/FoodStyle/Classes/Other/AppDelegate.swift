@@ -49,10 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
             return TencentOAuth.HandleOpenURL(url) || WeiboSDK.handleOpenURL(url, delegate: LaunchViewController())
-    }
-
+        }
+    
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         return TencentOAuth.HandleOpenURL(url) || WeiboSDK.handleOpenURL(url, delegate: LaunchViewController())
     }
 }
+
 
