@@ -169,17 +169,17 @@ class MailRegisteViewController: UIViewController {
         }
 
         verifyField.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(100.0)
-            make.height.equalTo(30.0)
+            make.width.equalTo(10*MARGIN())
+            make.height.equalTo(3*MARGIN())
             make.top.equalTo(container)
             make.right.equalTo(container)
         }
 
         registeButton.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_RECT().width -  2*20.0)
+            make.width.equalTo(SCREEN_RECT().width -  2*2*MARGIN())
             make.height.equalTo(35.0)
             make.centerX.equalTo(view.snp_centerX)
-            make.top.equalTo(container.snp_bottom).offset(20.0)
+            make.top.equalTo(container.snp_bottom).offset(2*MARGIN())
         }
     }
 

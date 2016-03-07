@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
         var scrollView = UIScrollView(frame: SCREEN_RECT())
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.contentSize = CGSizeMake(SCREEN_RECT().width,SCREEN_RECT().height+20)
+        scrollView.contentSize = CGSizeMake(SCREEN_RECT().width,SCREEN_RECT().height+2*MARGIN())
         return scrollView
     }()
 
@@ -103,12 +103,11 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         accountField.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(view)
-            make.top.equalTo(20.0)
-            make.height.equalTo(40.0)
+            make.top.equalTo(2*MARGIN())
+            make.height.equalTo(4*MARGIN())
         }
 
         seperator.snp_makeConstraints { (make) -> Void in
-//            make.width.equalTo(20)
             make.height.equalTo(0.5)
             make.top.equalTo(accountField.snp_bottom)
 //            make.left.equalTo(view).offset(200.0)
@@ -116,17 +115,17 @@ class LoginViewController: UIViewController {
 
         passwordField.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(view)
-            make.height.equalTo(40.0)
+            make.height.equalTo(4*MARGIN())
             make.top.equalTo(seperator.snp_bottom)
         }
 
         forgetPwdButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(passwordField.snp_bottom).offset(20.0)
-            make.right.equalTo(view).offset(-20.0)
+            make.top.equalTo(passwordField.snp_bottom).offset(2*MARGIN())
+            make.right.equalTo(view).offset(-2*MARGIN())
         }
 
         loginButton.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_RECT().width - 2*20)
+            make.width.equalTo(SCREEN_RECT().width - 2*2*MARGIN())
             make.height.equalTo(35.0)
             make.centerX.equalTo(view.snp_centerX)
             make.top.equalTo(forgetPwdButton.snp_bottom).offset(5.0)
@@ -134,7 +133,7 @@ class LoginViewController: UIViewController {
 
         infoButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
-            make.top.equalTo(loginButton.snp_bottom).offset(10.0)
+            make.top.equalTo(loginButton.snp_bottom).offset(MARGIN())
         }
     }
 

@@ -37,10 +37,22 @@ func GLOBAL_COLOR()->UIColor{
     return UIColor(red: 0.8, green: 0.18, blue: 0.05, alpha: 1)
 }
 
+func NAVIGATIONBAR_HEIGHT()->CGFloat{
+        return 44
+}
+
+func CANCELBUTTON_WIDTH()->CGFloat{
+    return 60
+}
+
+func MARGIN()->CGFloat{
+    return 10
+}
+
 func WXButton(frame frame:CGRect, title:String, target:AnyObject?, action:Selector)->UIButton{
     let button = UIButton(frame: frame)
     button.setTitle(title, forState: UIControlState.Normal)
-    button.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+    button.titleLabel?.font = UIFont.systemFontOfSize(16.0)
     button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
     button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
     button.addTarget(target, action: action, forControlEvents: .TouchDown)

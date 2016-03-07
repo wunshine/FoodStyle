@@ -40,34 +40,34 @@ class TastyFoodViewController: UITableViewController {
 
     @objc private func choosed(){
             selectedButton?.selected = false
-            selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+            selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(16.0)
             leftButton.selected = true
             selectedButton = leftButton
 
             if leftButton.selected == true{
-                leftButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+                leftButton.titleLabel?.font = UIFont.systemFontOfSize(20.0)
         }
     }
 
     @objc private func follow(){
         selectedButton?.selected = false
-        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(16.0)
         rightButton.selected = true
         selectedButton = rightButton
 
         if rightButton.selected == true{
-            rightButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+            rightButton.titleLabel?.font = UIFont.systemFontOfSize(20.0)
         }
     }
 
     @objc private func all(){
         selectedButton?.selected = false
-        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(12.0)
+        selectedButton?.titleLabel?.font = UIFont.systemFontOfSize(16.0)
         titleView.selected = true
         selectedButton = titleView
 
         if titleView.selected == true{
-            titleView.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+            titleView.titleLabel?.font = UIFont.systemFontOfSize(20.0)
         }
     }
 
