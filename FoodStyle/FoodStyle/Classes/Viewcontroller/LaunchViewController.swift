@@ -9,9 +9,8 @@
 import UIKit
 class LaunchViewController: UIViewController{
 
-    var tencentOAuth:TencentOAuth?
-    var weiboUser:WeiboUser?
 
+    var tencentOAuth:TencentOAuth?
     var permissions:NSArray?
 
     override func viewDidLoad() {
@@ -41,15 +40,17 @@ class LaunchViewController: UIViewController{
     @IBAction func SinaLoginButttonClick(sender: AnyObject) {
 
         WeiboSDK.registerApp(SINA_APPKEY())
+        WeiboSDK.enableDebugMode(true)
         let request = WBAuthorizeRequest()
         request.scope = "all"
+        request.redirectURI = SINA_REDIRECTURL()
         request.userInfo = ["myKey":"myValue"]
         WeiboSDK.sendRequest(request)
         
-        UIView.animateWithDuration(0.5) { () -> Void in
-            self.view.frame.origin.y += SCREEN_RECT().height
-            UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
-        }
+//        UIView.animateWithDuration(0.5) { () -> Void in
+//            self.view.frame.origin.y += SCREEN_RECT().height
+//            UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
+//        }
     }
 
     @IBAction func DouGuoLoginButtonClick(sender: AnyObject) {
@@ -66,17 +67,6 @@ class LaunchViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -115,13 +105,9 @@ extension LaunchViewController:TencentSessionDelegate {
     }
 }
 
-extension LaunchViewController : WBHttpRequestDelegate,WeiboSDKDelegate{
-    func didReceiveWeiboRequest(request: WBBaseRequest!) {
 
-    }
-
+extension LaunchViewController : WeiboSDKDelegate{
     func didReceiveWeiboResponse(response: WBBaseResponse!) {
-
         if response.isKindOfClass(WBAuthorizeResponse){
             let res = response as! WBAuthorizeResponse
             if (res.statusCode as! Int) == 0 {
@@ -130,7 +116,36 @@ extension LaunchViewController : WBHttpRequestDelegate,WeiboSDKDelegate{
                 print(dict)
             }
         }
+        print("hehe")
     }
+
+    func didReceiveWeiboRequest(request: WBBaseRequest!) {
+        print(request)
+    }
+}
+
+extension LaunchViewController: WBHttpRequestDelegate{
+
+    func request(request: WBHttpRequest!, didFailWithError error: NSError!) {
+        print(error)
+    }
+
+    func request(request: WBHttpRequest!, didFinishLoadingWithResult result: String!) {
+        print(result)
+    }
+
+    func request(request: WBHttpRequest!, didReceiveResponse response: NSURLResponse!) {
+        print(request)
+    }
+
+    func request(request: WBHttpRequest!, didFinishLoadingWithDataResult data: NSData!) {
+        print(request)
+    }
+
+    func request(request: WBHttpRequest!, didReciveRedirectResponseWithURI redirectUrl: NSURL!) {
+        print(request)
+    }
+
 }
 
 

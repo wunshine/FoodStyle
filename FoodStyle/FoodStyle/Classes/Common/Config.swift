@@ -25,6 +25,10 @@ func SINA_APPSECRET()->String{
     return "5d5f349a891fae0b907de9dfa66c65b0"
 }
 
+func SINA_REDIRECTURL()->String{
+    return "https://github.com/wunshine"
+}
+
 func SCREEN_RECT()->CGRect{
     return UIScreen.mainScreen().bounds
 }

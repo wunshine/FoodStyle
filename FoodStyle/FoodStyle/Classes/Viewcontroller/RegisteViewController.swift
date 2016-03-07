@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class RegisteViewController: UIViewController {
+class RegisteViewController : UIViewController {
 
     lazy var scrollView : UIScrollView = {
         var scrollView = UIScrollView()
