@@ -62,12 +62,6 @@ class LaunchViewController: UIViewController{
 
     }
 
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
 extension LaunchViewController : TencentLoginDelegate{
@@ -82,8 +76,9 @@ extension LaunchViewController : TencentLoginDelegate{
     func tencentDidNotLogin(cancelled: Bool) {
         if cancelled {
             print("用户退出")
+            self.noticeInfo("用户退出",autoClear: true, autoClearTime: 1)
         }else{
-            self.noticeError("登录失败")
+            self.noticeError("登录失败",autoClear: true, autoClearTime: 1)
         }
     }
 
@@ -96,7 +91,7 @@ extension LaunchViewController : TencentLoginDelegate{
 extension LaunchViewController:TencentSessionDelegate {
 
     func getUserInfoResponse(response: APIResponse!) {
-
+        print(response)
     }
 
     func tencentDidLogout() {
