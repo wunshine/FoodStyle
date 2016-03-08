@@ -11,21 +11,28 @@ import UIKit
 class WXNavigationController: UINavigationController {
 
     override class func initialize(){
-        super.initialize()
         let bar = UINavigationBar.appearance()
         bar.tintColor = UIColor.whiteColor()
         let backImage = UIImage().imageWithColor(GLOBAL_COLOR())
         bar.setBackgroundImage(backImage, forBarMetrics: .Default)
-        let dict = ["NSForegroundColorAttributeName":UIColor.whiteColor()]
+        let dict = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         bar.titleTextAttributes = dict
 
         let barButtonItem = UIBarButtonItem.appearance()
-        let dict2 = ["NSForegroundColorAttributeName" : UIColor.whiteColor(),"NSFontAttributeName":UIFont.systemFontOfSize(14)]
+        let dict2 = [NSForegroundColorAttributeName : UIColor.whiteColor(),NSFontAttributeName:UIFont.systemFontOfSize(14)]
         barButtonItem.setTitleTextAttributes(dict2, forState: UIControlState.Normal)
+        super.initialize()
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+
+    override func pushViewController(viewController: UIViewController, animated: Bool) {
+        if self.childViewControllers.count>0 {
+            viewController.hidesBottomBarWhenPushed = true
+                    }
+        super.pushViewController(viewController, animated: animated)
     }
     
     override func viewDidLoad() {

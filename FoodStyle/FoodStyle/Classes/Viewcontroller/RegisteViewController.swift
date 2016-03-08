@@ -70,7 +70,7 @@ class RegisteViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "注册"
+        title = "注册"
 //        let backButtonItem = UIButton(type: .Custom)
 //        backButtonItem.frame = CGRectMake(0, 0, 100, 44)
 //        backButtonItem.setTitle("返回", forState: UIControlState.Normal)

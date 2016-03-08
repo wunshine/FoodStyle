@@ -72,6 +72,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "登录"
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(scrollView)
         scrollView.addSubview(self.accountField)

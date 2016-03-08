@@ -15,6 +15,7 @@ class LaunchViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .Plain, target: nil, action: nil)
         self.tencentOAuth = TencentOAuth(appId: TENCENT_APPID(), andDelegate: self)
         self.permissions = ["get_user_info","get_simple_userinfo"]
     }
@@ -76,7 +77,6 @@ extension LaunchViewController : TencentLoginDelegate{
     func tencentDidNotLogin(cancelled: Bool) {
         if cancelled {
             print("用户退出")
-            self.noticeInfo("用户退出",autoClear: true, autoClearTime: 1)
         }else{
             self.noticeError("登录失败",autoClear: true, autoClearTime: 1)
         }

@@ -102,6 +102,7 @@ class MailRegisteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "邮箱注册"
         self.view.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(self.scrollView)
         scrollView.addSubview(self.mail)
