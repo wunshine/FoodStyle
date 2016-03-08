@@ -11,6 +11,10 @@ import SnapKit
 
 class RestaurantViewController: UIViewController {
 
+    @objc func refreshLocation(){
+
+    }
+
     lazy var searchView : UISearchBar = {
         var search = UISearchBar()
         search.delegate = self
@@ -27,18 +31,43 @@ class RestaurantViewController: UIViewController {
         return rightItem
     }()
 
+    lazy var location:UIButton = {
+        var location = UIButton(frame: CGRectMake(0,0,50,30))
+        location.userInteractionEnabled = false
+        location.setImage(UIImage(named: "location_nearby_position"), forState: UIControlState.Normal)
+        location.setTitle("第八区", forState: UIControlState.Normal)
+        return location
+    }()
+
+    lazy var refresh:UIButton = {
+        var refresh = UIButton(frame: CGRectMake(0,0,30,30))
+        refresh.setImage(UIImage(named: "location_nearby_refresh"), forState: UIControlState.Normal)
+        refresh.addTarget(self, action: "refreshLocation", forControlEvents: .TouchUpInside)
+        return refresh
+    }()
+
+    lazy var toolView:UIView = {
+        var tool = UIView(frame: CGRectMake(0,0,SCREEN_RECT().width,30))
+        tool.backgroundColor = UIColor.redColor()
+        tool.addSubview(self.location)
+        tool.addSubview(self.refresh)
+        return tool
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "餐厅"
-        self.view.backgroundColor = UIColor.blueColor()
-        self.navigationController?.navigationBar.addSubview(rightItem)
-        self.navigationController?.navigationBar.addSubview(searchView)
+        title = "餐厅"
+        view.backgroundColor = UIColor.blueColor()
+        navigationController?.navigationBar.addSubview(rightItem)
+        navigationController?.navigationBar.addSubview(searchView)
+        view.addSubview(toolView)
     }
 
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
         constraintSearchBar()
-        constraintRirhtView()
+        constraintRightView()
+        constraintTool()
     }
 
     private func constraintSearchBar(){
@@ -49,7 +78,7 @@ class RestaurantViewController: UIViewController {
         }
     }
 
-    private func constraintRirhtView(){
+    private func constraintRightView(){
         rightItem.snp_makeConstraints(closure: { (make) -> Void in
             make.left.equalTo(searchView.snp_right).offset(15)
             make.centerY.equalTo(searchView.snp_centerY)
@@ -57,10 +86,22 @@ class RestaurantViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    private func constraintTool(){
+        toolView.snp_makeConstraints { (make) -> Void in
+            make.bottom.equalTo(0)
+        }
+
+        location.snp_makeConstraints { (make) -> Void in
+            make.center.equalTo(toolView.snp_center)
+        }
+
+        refresh.snp_makeConstraints { (make) -> Void in
+            make.right.equalTo(10)
+            make.centerY.equalTo(toolView.snp_centerY)
+        }
     }
 }
+
 
 extension RestaurantViewController : UISearchBarDelegate{
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
