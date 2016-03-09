@@ -11,10 +11,6 @@ import SnapKit
 
 class RestaurantViewController: UIViewController {
 
-    @objc func refreshLocation(){
-
-    }
-
     lazy var searchView : UISearchBar = {
         var search = UISearchBar()
         search.delegate = self
@@ -24,7 +20,7 @@ class RestaurantViewController: UIViewController {
     }()
 
     lazy var rightItem : UIButton = {
-        let rightItem = UIButton(frame: CGRectMake(0,0,CANCELBUTTON_WIDTH(),NAVIGATIONBAR_HEIGHT()))
+        let rightItem = UIButton()
         rightItem.setTitle("取消", forState: UIControlState.Normal)
         rightItem.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
         rightItem.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
@@ -32,27 +28,35 @@ class RestaurantViewController: UIViewController {
     }()
 
     lazy var location:UIButton = {
-        var location = UIButton(frame: CGRectMake(0,0,50,30))
+        var location = UIButton()
         location.userInteractionEnabled = false
+        location.titleLabel?.font = UIFont.systemFontOfSize(12)
+        location.titleEdgeInsets = UIEdgeInsetsMake(0,10,0,0)
         location.setImage(UIImage(named: "location_nearby_position"), forState: UIControlState.Normal)
+        location.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         location.setTitle("第八区", forState: UIControlState.Normal)
         return location
     }()
 
     lazy var refresh:UIButton = {
-        var refresh = UIButton(frame: CGRectMake(0,0,30,30))
+        var refresh = UIButton()
         refresh.setImage(UIImage(named: "location_nearby_refresh"), forState: UIControlState.Normal)
+        refresh.highlighted = true
         refresh.addTarget(self, action: "refreshLocation", forControlEvents: .TouchUpInside)
         return refresh
     }()
 
     lazy var toolView:UIView = {
-        var tool = UIView(frame: CGRectMake(0,0,SCREEN_RECT().width,30))
-        tool.backgroundColor = UIColor.redColor()
+        var tool = UIView()
+        tool.backgroundColor = UIColor.lightGrayColor()
         tool.addSubview(self.location)
         tool.addSubview(self.refresh)
         return tool
     }()
+
+    @objc func refreshLocation(){
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,15 +92,20 @@ class RestaurantViewController: UIViewController {
 
     private func constraintTool(){
         toolView.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(0)
+            make.bottom.equalTo(-49)
+            make.width.equalTo(SCREEN_RECT().width)
+            make.height.equalTo(24)
         }
 
         location.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(toolView.snp_center)
+            make.height.equalTo(20)
+            make.width.equalTo(100)
         }
 
         refresh.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(10)
+            make.right.equalTo(-10)
+            make.height.width.equalTo(20)
             make.centerY.equalTo(toolView.snp_centerY)
         }
     }
