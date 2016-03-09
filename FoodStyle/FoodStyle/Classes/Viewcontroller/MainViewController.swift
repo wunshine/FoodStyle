@@ -13,6 +13,7 @@ class MainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.redColor()
+        self.automaticallyAdjustsScrollViewInsets = false
         setChildViewController()
         setTabbar()
     }

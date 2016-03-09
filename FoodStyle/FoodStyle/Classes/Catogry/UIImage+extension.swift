@@ -19,4 +19,14 @@ extension UIImage{
         UIGraphicsEndImageContext()
         return image
     }
+
+    func imageWithCorner()->UIImage{
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
+        let path = UIBezierPath(ovalInRect: CGRectMake(0,0,self.size.width,self.size.height))
+        path.addClip()
+        drawAtPoint(CGPointZero)
+        let cornerImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return cornerImage
+    }
 }
