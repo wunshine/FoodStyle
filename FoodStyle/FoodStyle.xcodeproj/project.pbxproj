@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		762008449C704DA38F94CA74 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD9D8B92CC7682F7E2CD40A /* Pods.framework */; };
+		B343451C1C9077D100B30013 /* AccountSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B343451B1C9077D100B30013 /* AccountSetController.swift */; };
+		B343451E1C907AA400B30013 /* AddFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B343451D1C907AA400B30013 /* AddFriendController.swift */; };
+		B34345221C90868600B30013 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34345211C90868600B30013 /* SearchController.swift */; };
 		B35302171C8B3CD80026095B /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302071C8B3CD80026095B /* UIImage+extension.swift */; };
 		B35302181C8B3CD80026095B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302091C8B3CD80026095B /* Config.swift */; };
 		B35302191C8B3CD80026095B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B353020B1C8B3CD80026095B /* AppDelegate.swift */; };
@@ -62,6 +65,9 @@
 /* Begin PBXFileReference section */
 		A7899351C96459EAD5777979 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D9FE9A21B34C9844E7EDCC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B343451B1C9077D100B30013 /* AccountSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSetController.swift; sourceTree = "<group>"; };
+		B343451D1C907AA400B30013 /* AddFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendController.swift; sourceTree = "<group>"; };
+		B34345211C90868600B30013 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B35302071C8B3CD80026095B /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		B35302091C8B3CD80026095B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B353020B1C8B3CD80026095B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 				B35302481C8C617A0026095B /* CameraViewController.swift */,
 				B35302441C8C5F240026095B /* MessageViewController.swift */,
 				B35302461C8C5F320026095B /* MineViewController.swift */,
+				B343451B1C9077D100B30013 /* AccountSetController.swift */,
+				B343451D1C907AA400B30013 /* AddFriendController.swift */,
+				B34345211C90868600B30013 /* SearchController.swift */,
 				B35302151C8B3CD80026095B /* RegisteViewController.swift */,
 				B35302161C8B3CD80026095B /* WXNavigationController.swift */,
 			);
@@ -489,6 +498,7 @@
 				B35302451C8C5F240026095B /* MessageViewController.swift in Sources */,
 				B35302431C8C5F110026095B /* RestaurantViewController.swift in Sources */,
 				B35302471C8C5F320026095B /* MineViewController.swift in Sources */,
+				B34345221C90868600B30013 /* SearchController.swift in Sources */,
 				B35302201C8B3CD80026095B /* RegisteViewController.swift in Sources */,
 				B35302211C8B3CD80026095B /* WXNavigationController.swift in Sources */,
 				B353021D1C8B3CD80026095B /* LoginViewController.swift in Sources */,
@@ -496,7 +506,9 @@
 				B353021C1C8B3CD80026095B /* LaunchViewController.swift in Sources */,
 				B35302191C8B3CD80026095B /* AppDelegate.swift in Sources */,
 				B35302411C8C5EEA0026095B /* TastyFoodViewController.swift in Sources */,
+				B343451C1C9077D100B30013 /* AccountSetController.swift in Sources */,
 				B3A1C8141C8D2B64000BF0B0 /* SwiftNotice.swift in Sources */,
+				B343451E1C907AA400B30013 /* AddFriendController.swift in Sources */,
 				B35302491C8C617A0026095B /* CameraViewController.swift in Sources */,
 				B35302171C8B3CD80026095B /* UIImage+extension.swift in Sources */,
 				B35302181C8B3CD80026095B /* Config.swift in Sources */,

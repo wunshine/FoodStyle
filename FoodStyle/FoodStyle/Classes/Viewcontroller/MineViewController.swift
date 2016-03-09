@@ -21,6 +21,8 @@ class MineViewController: UIViewController {
 
     lazy var backImage:UIImageView = {
         let back = UIImageView(image: UIImage(named: "lol"))
+        let tap = UITapGestureRecognizer(target: self, action: "tapBackImage")
+        back.addGestureRecognizer(tap)
         back.userInteractionEnabled = true
         return back
     }()
@@ -29,7 +31,7 @@ class MineViewController: UIViewController {
         let image = UIImage(named: "captcha_refresh_hl")
         let conerImage = image!.imageWithCorner()
         var icon = UIButton()
-        icon.addTarget(self, action: "choice", forControlEvents: .TouchUpInside)
+        icon.addTarget(self, action: "iconClick", forControlEvents: .TouchUpInside)
         icon.setImage(conerImage, forState: UIControlState.Normal)
         return icon
     }()
@@ -76,18 +78,30 @@ class MineViewController: UIViewController {
         return tab
     }()
 
-    lazy var setIcon:UIBarButtonItem = {
-        let set = UIBarButtonItem(image: UIImage(named: "my_center_setting_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "set")
-        return set
-    }()
+    @objc func tapBackImage(){
+        let alertVC = UIAlertController(title: "修改封面", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let camero = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default, handler: nil)
+        let pickPhoto = UIAlertAction(title: "从相册挑选", style: UIAlertActionStyle.Default, handler: nil)
+        let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
 
-    lazy var addFriend:UIBarButtonItem = {
-        let add = UIBarButtonItem(image: UIImage(named: "my_center_add_friends_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "add")
-        return add
-    }()
+        alertVC.addAction(camero)
+        alertVC.addAction(pickPhoto)
+        alertVC.addAction(cancel)
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
 
-    @objc private func choice(){
+    @objc private func iconClick(){
+        let alertVC = UIAlertController(title: "修改封面", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let seeBigImage = UIAlertAction(title: "查看大图", style: UIAlertActionStyle.Default, handler: nil)
+        let camero = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default, handler: nil)
+        let pickPhoto = UIAlertAction(title: "从相册挑选", style: UIAlertActionStyle.Default, handler: nil)
+        let cancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
 
+        alertVC.addAction(seeBigImage)
+        alertVC.addAction(camero)
+        alertVC.addAction(pickPhoto)
+        alertVC.addAction(cancel)
+        self.presentViewController(alertVC, animated: true, completion: nil)
     }
 
     @objc private func scoreMarket(){
@@ -95,10 +109,12 @@ class MineViewController: UIViewController {
     }
 
     @objc func set(){
+        presentViewController(WXNavigationController(rootViewController:AccountSetController()), animated: true , completion: nil)
 
     }
 
     @objc func add(){
+        presentViewController(WXNavigationController(rootViewController:AddFriendController()), animated: true, completion: nil)
 
     }
 
@@ -144,8 +160,8 @@ class MineViewController: UIViewController {
         super.viewDidLoad()
         title = "个人信息"
         self.automaticallyAdjustsScrollViewInsets = false
-        navigationItem.leftBarButtonItem = setIcon
-        navigationItem.rightBarButtonItem = addFriend
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "my_center_setting_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "set")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_friend_normal"), style: UIBarButtonItemStyle.Plain, target: self, action: "add")
         view.backgroundColor = UIColor.lightGrayColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ID)
         view.addSubview(tableView)

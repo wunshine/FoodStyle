@@ -47,10 +47,13 @@ class LaunchViewController: UIViewController{
 //        request.redirectURI = SINA_REDIRECTURL()
 //        request.userInfo = ["myKey":"myValue"]
 //        WeiboSDK.sendRequest(request)
+        
         UIView.animateWithDuration(0.5) { () -> Void in
             self.view.frame.origin.y += SCREEN_RECT().height
             UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
         }
+
+//        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
 
     }
 

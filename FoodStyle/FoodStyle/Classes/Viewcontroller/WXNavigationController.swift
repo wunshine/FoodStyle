@@ -28,13 +28,13 @@ class WXNavigationController: UINavigationController {
         return UIStatusBarStyle.LightContent
     }
 
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
-        if self.childViewControllers.count>0 {
-            viewController.hidesBottomBarWhenPushed = true
-                    }
-        super.pushViewController(viewController, animated: animated)
-    }
-    
+//    override func pushViewController(viewController: UIViewController, animated: Bool) {
+//        if self.childViewControllers.count>0 {
+//            viewController.hidesBottomBarWhenPushed = true
+//                    }
+//        super.pushViewController(viewController, animated: animated)
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
