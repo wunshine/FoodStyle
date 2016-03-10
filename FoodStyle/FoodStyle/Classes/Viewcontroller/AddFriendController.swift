@@ -13,6 +13,10 @@ class AddFriendController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "添加好友"
+        tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Grouped)
+        tableView.sectionHeaderHeight = 15
+        tableView.sectionFooterHeight = 0
+        tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "cancel")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "map_icon_zoom_out"), style: UIBarButtonItemStyle.Plain, target: self, action: "searchFriend")
     }
@@ -26,34 +30,8 @@ class AddFriendController: UITableViewController {
         
     }
 
-  
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -100,4 +78,54 @@ class AddFriendController: UITableViewController {
     }
     */
 
+
+extension AddFriendController{
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let ID = "cell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(ID)
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ID)
+        }
+        cell!.textLabel?.text = "test"
+        return cell!
+    }
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        switch section{
+        case 0 :
+            return 1
+        case 1:
+            return 2
+        case 2:
+            return 10
+        default:
+            return 10
+        }
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headLabel = UILabel(frame: CGRectMake(0,0,SCREEN_RECT().width,15))
+        switch section{
+        case 0:
+            headLabel.text = "邀请好友"
+            headLabel.font = UIFont.systemFontOfSize(10)
+            return headLabel
+        case 1:
+            headLabel.text = "新的好友"
+            headLabel.font = UIFont.systemFontOfSize(10)
+            return headLabel
+        case 2:
+            headLabel.text = "推荐关注"
+            headLabel.font = UIFont.systemFontOfSize(10)
+            return headLabel
+        default:
+            return headLabel
+        }
+    }
 }
