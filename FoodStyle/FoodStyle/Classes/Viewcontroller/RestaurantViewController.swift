@@ -60,7 +60,6 @@ class RestaurantViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "餐厅"
         view.backgroundColor = UIColor.blueColor()
         navigationController?.navigationBar.addSubview(rightItem)
         navigationController?.navigationBar.addSubview(searchView)

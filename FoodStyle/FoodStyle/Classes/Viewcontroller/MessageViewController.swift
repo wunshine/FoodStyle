@@ -63,7 +63,6 @@ class MessageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "消息提醒"
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.trashView)
         view.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(segment)

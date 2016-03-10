@@ -29,7 +29,6 @@ class TastyFoodViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "美食"
         self.view.backgroundColor = UIColor.yellowColor()
         self.navigationItem.titleView = titleView
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.leftButton)

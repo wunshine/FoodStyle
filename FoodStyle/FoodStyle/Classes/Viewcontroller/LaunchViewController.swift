@@ -50,7 +50,7 @@ class LaunchViewController: UIViewController{
         
         UIView.animateWithDuration(0.5) { () -> Void in
             self.view.frame.origin.y += SCREEN_RECT().height
-            UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
+            UIApplication.sharedApplication().keyWindow?.rootViewController = WXTabbarController()
         }
 
 //        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
@@ -117,7 +117,7 @@ extension LaunchViewController : WeiboSDKDelegate{
 
                 UIView.animateWithDuration(0.5) { () -> Void in
                     self.view.frame.origin.y += SCREEN_RECT().height
-                    UIApplication.sharedApplication().keyWindow?.rootViewController = MainViewController()
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = WXTabbarController()
                 }
             }
         }

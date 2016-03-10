@@ -158,7 +158,6 @@ class MineViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "个人信息"
         self.automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "my_center_setting_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "set")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_friend_normal"), style: UIBarButtonItemStyle.Plain, target: self, action: "add")
@@ -194,6 +193,8 @@ extension MineViewController: UITableViewDelegate,UITableViewDataSource{
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
+//        let offset = scrollView.contentOffset.y
+//        backImage.frame.origin.y = -offset
 
     }
 }

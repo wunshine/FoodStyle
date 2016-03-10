@@ -11,6 +11,7 @@
 		B343451C1C9077D100B30013 /* AccountSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B343451B1C9077D100B30013 /* AccountSetController.swift */; };
 		B343451E1C907AA400B30013 /* AddFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B343451D1C907AA400B30013 /* AddFriendController.swift */; };
 		B34345221C90868600B30013 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34345211C90868600B30013 /* SearchController.swift */; };
+		B34345261C91270200B30013 /* WXTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34345251C91270200B30013 /* WXTabbar.swift */; };
 		B35302171C8B3CD80026095B /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302071C8B3CD80026095B /* UIImage+extension.swift */; };
 		B35302181C8B3CD80026095B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302091C8B3CD80026095B /* Config.swift */; };
 		B35302191C8B3CD80026095B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B353020B1C8B3CD80026095B /* AppDelegate.swift */; };
@@ -19,7 +20,7 @@
 		B353021C1C8B3CD80026095B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302111C8B3CD80026095B /* LaunchViewController.swift */; };
 		B353021D1C8B3CD80026095B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302121C8B3CD80026095B /* LoginViewController.swift */; };
 		B353021E1C8B3CD80026095B /* MailRegisteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302131C8B3CD80026095B /* MailRegisteViewController.swift */; };
-		B353021F1C8B3CD80026095B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302141C8B3CD80026095B /* MainViewController.swift */; };
+		B353021F1C8B3CD80026095B /* WXTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302141C8B3CD80026095B /* WXTabbarController.swift */; };
 		B35302201C8B3CD80026095B /* RegisteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302151C8B3CD80026095B /* RegisteViewController.swift */; };
 		B35302211C8B3CD80026095B /* WXNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35302161C8B3CD80026095B /* WXNavigationController.swift */; };
 		B35302251C8B3DEC0026095B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35302241C8B3DEC0026095B /* TencentOpenAPI.framework */; };
@@ -68,6 +69,7 @@
 		B343451B1C9077D100B30013 /* AccountSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSetController.swift; sourceTree = "<group>"; };
 		B343451D1C907AA400B30013 /* AddFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendController.swift; sourceTree = "<group>"; };
 		B34345211C90868600B30013 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		B34345251C91270200B30013 /* WXTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXTabbar.swift; sourceTree = "<group>"; };
 		B35302071C8B3CD80026095B /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		B35302091C8B3CD80026095B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B353020B1C8B3CD80026095B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 		B35302111C8B3CD80026095B /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		B35302121C8B3CD80026095B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B35302131C8B3CD80026095B /* MailRegisteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailRegisteViewController.swift; sourceTree = "<group>"; };
-		B35302141C8B3CD80026095B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B35302141C8B3CD80026095B /* WXTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXTabbarController.swift; sourceTree = "<group>"; };
 		B35302151C8B3CD80026095B /* RegisteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteViewController.swift; sourceTree = "<group>"; };
 		B35302161C8B3CD80026095B /* WXNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXNavigationController.swift; sourceTree = "<group>"; };
 		B35302241C8B3DEC0026095B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = FoodStyle/Classes/3rdParty/TencentQQ/TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				B353020F1C8B3CD80026095B /* WXTextField.swift */,
+				B34345251C91270200B30013 /* WXTabbar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,7 +229,7 @@
 				B35302111C8B3CD80026095B /* LaunchViewController.swift */,
 				B35302121C8B3CD80026095B /* LoginViewController.swift */,
 				B35302131C8B3CD80026095B /* MailRegisteViewController.swift */,
-				B35302141C8B3CD80026095B /* MainViewController.swift */,
+				B35302141C8B3CD80026095B /* WXTabbarController.swift */,
 				B35302401C8C5EEA0026095B /* TastyFoodViewController.swift */,
 				B35302421C8C5F110026095B /* RestaurantViewController.swift */,
 				B35302481C8C617A0026095B /* CameraViewController.swift */,
@@ -498,6 +501,7 @@
 				B35302451C8C5F240026095B /* MessageViewController.swift in Sources */,
 				B35302431C8C5F110026095B /* RestaurantViewController.swift in Sources */,
 				B35302471C8C5F320026095B /* MineViewController.swift in Sources */,
+				B34345261C91270200B30013 /* WXTabbar.swift in Sources */,
 				B34345221C90868600B30013 /* SearchController.swift in Sources */,
 				B35302201C8B3CD80026095B /* RegisteViewController.swift in Sources */,
 				B35302211C8B3CD80026095B /* WXNavigationController.swift in Sources */,
@@ -512,7 +516,7 @@
 				B35302491C8C617A0026095B /* CameraViewController.swift in Sources */,
 				B35302171C8B3CD80026095B /* UIImage+extension.swift in Sources */,
 				B35302181C8B3CD80026095B /* Config.swift in Sources */,
-				B353021F1C8B3CD80026095B /* MainViewController.swift in Sources */,
+				B353021F1C8B3CD80026095B /* WXTabbarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
