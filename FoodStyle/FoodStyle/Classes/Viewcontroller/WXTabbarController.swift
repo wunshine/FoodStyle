@@ -11,9 +11,7 @@ import UIKit
 class WXTabbarController: UITabBarController {
 
     override class func initialize(){
-
         let item = UITabBarItem.appearance()
-//        item.imageInsets = UIEdgeInsetsMake(10, 0, 0, 0)
         let dictSelected = [NSForegroundColorAttributeName:UIColor.blackColor()]
         let dictNormal = [NSForegroundColorAttributeName:UIColor.lightGrayColor()]
         item.setTitleTextAttributes(dictNormal, forState: UIControlState.Normal)

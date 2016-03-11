@@ -9,8 +9,11 @@
 import UIKit
 
 class WXTabbar: UITabBar {
-//    func WXTabbar(){
-    var cameroButton:UIButton = {
+    internal func WXTabbar(){
+        addSubview(cameroButton)
+    }
+
+    private var cameroButton:UIButton = {
         var camero = UIButton(type: .Custom)
         camero.backgroundColor = GLOBAL_COLOR()
         camero.setImage(UIImage(named: "tab_button_camera"), forState: UIControlState.Normal)
@@ -36,7 +39,7 @@ class WXTabbar: UITabBar {
             }
             originX = i * width
             button.frame = CGRectMake(originX, originY, width, height)
-//            button.tag = i
+//            button.tag = i 
             i++
             let butto:UIButton = button as! UIButton
            butto.addTarget(self, action: "buttonClick:", forControlEvents: .TouchUpInside)

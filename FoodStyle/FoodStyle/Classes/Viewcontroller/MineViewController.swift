@@ -12,6 +12,8 @@ import SnapKit
 class MineViewController: UIViewController {
 
     let ID = "cell"
+    var originOffset :CGFloat = 0
+
 
     lazy var toolView:UIView = {
         var tool = UIView()
@@ -25,6 +27,16 @@ class MineViewController: UIViewController {
         back.addGestureRecognizer(tap)
         back.userInteractionEnabled = true
         return back
+    }()
+
+    lazy var containView:UIView = {
+        var view = UIView()
+        view.backgroundColor = UIColor.redColor()
+        view.addSubview(self.icon)
+        view.addSubview(self.nameLabel)
+        view.addSubview(self.timeLabel)
+        view.addSubview(self.scoreLabel)
+        return view
     }()
 
     lazy var icon : UIButton = {
@@ -78,6 +90,12 @@ class MineViewController: UIViewController {
         return tab
     }()
 
+    lazy var scrollView:UIScrollView = {
+        var s = UIScrollView(frame: SCREEN_RECT())
+        s.userInteractionEnabled = true
+        return s
+    }()
+
     @objc func tapBackImage(){
         let alertVC = UIAlertController(title: "修改封面", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let camero = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default, handler: nil)
@@ -127,6 +145,12 @@ class MineViewController: UIViewController {
             make.top.equalTo(view.snp_top)
         }
 
+        containView.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_RECT().width)
+            make.height.equalTo(SCREEN_RECT().width*0.6)
+            make.top.equalTo(backImage.snp_top)
+        }
+
         icon.snp_makeConstraints { (make) -> Void in
 //            make.width.height.equalTo(80)
             make.centerX.equalTo(view.snp_centerX)
@@ -153,24 +177,23 @@ class MineViewController: UIViewController {
         toolView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_RECT().width)
             make.height.equalTo(44)
+//            make.top.equalTo(containView.snp_bottom)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        originOffset = self.tableView.contentOffset.y
         self.automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "my_center_setting_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "set")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_friend_normal"), style: UIBarButtonItemStyle.Plain, target: self, action: "add")
         view.backgroundColor = UIColor.lightGrayColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ID)
-        view.addSubview(tableView)
-        view.addSubview(backImage)
-        view.addSubview(icon)
-        view.addSubview(nameLabel)
-        view.addSubview(timeLabel)
-        view.addSubview(scoreLabel)
-        view.didAddSubview(toolView)
-
+        view.addSubview(scrollView)
+        scrollView.addSubview(tableView)
+        scrollView.addSubview(backImage)
+        scrollView.addSubview(containView)
+        scrollView.didAddSubview(toolView)
     }
 }
 
@@ -193,8 +216,12 @@ extension MineViewController: UITableViewDelegate,UITableViewDataSource{
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        let offset = scrollView.contentOffset.y
-//        backImage.frame.origin.y = -offset
+        let offset = scrollView.contentOffset.y
+        let delta = offset - originOffset
+        backImage.frame.origin.y = -delta
+    }
 
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+            self.backImage.frame.origin.y = 0
     }
 }
