@@ -130,6 +130,7 @@ class MineViewController: UIViewController {
     }
 
     @objc private func scoreMarket(){
+        navigationController?.presentViewController(WXNavigationController(rootViewController:ScoreController()), animated: true , completion: nil)
 
     }
 
@@ -153,7 +154,7 @@ class MineViewController: UIViewController {
 
         tableView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_RECT().width)
-            make.height.equalTo(150)
+            make.height.equalTo(200)
             tableViewConstraint = make.top.equalTo(backImage.snp_bottom).offset(-45).constraint
         }
 

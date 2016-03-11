@@ -10,14 +10,6 @@ import UIKit
 
 class WXTabbarController: UITabBarController {
 
-    override class func initialize(){
-        let item = UITabBarItem.appearance()
-        let dictSelected = [NSForegroundColorAttributeName:UIColor.blackColor()]
-        let dictNormal = [NSForegroundColorAttributeName:UIColor.lightGrayColor()]
-        item.setTitleTextAttributes(dictNormal, forState: UIControlState.Normal)
-        item.setTitleTextAttributes(dictSelected, forState: UIControlState.Selected)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.tabBar.removeFromSuperview()

@@ -24,6 +24,12 @@ class MessageViewController: UIViewController {
     lazy var tableView:UITableView = {
         var tab = UITableView()
         tab.tableFooterView = UIView()
+        let head = UILabel(frame: CGRectMake(0,0,SCREEN_RECT().width,30))
+        head.textColor = UIColor.lightGrayColor()
+        head.font = UIFont.systemFontOfSize(10)
+        head.textAlignment = .Center
+        head.text = "还没有新消息"
+        tab.tableHeaderView = head
         tab.delegate = self
         tab.dataSource = self
         return tab
@@ -92,11 +98,11 @@ class MessageViewController: UIViewController {
 
 extension MessageViewController:UITableViewDelegate,UITableViewDataSource{
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 0
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

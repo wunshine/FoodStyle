@@ -33,6 +33,10 @@ func SCREEN_RECT()->CGRect{
     return UIScreen.mainScreen().bounds
 }
 
+func SCORE_MARKET_URL()->NSURL{
+    return NSURL(string: "http://m.douguo.com/special/jifen/?aggressive=QrDdqKtzWQ&clientkey=f984c5379ba0c871&device=iPhone6,2&imei=F397FDA5-BF1D-4269-940F-8076222C9ABF&sdk=9.2.1&timestamp=1457707483&user_id=16718286&version=211")!
+}
+
 func GLOBAL_COLOR()->UIColor{
     return UIColor(red: 0.8, green: 0.18, blue: 0.05, alpha: 1)
 }
