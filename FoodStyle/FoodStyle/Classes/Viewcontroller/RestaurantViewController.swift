@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 class RestaurantViewController: UIViewController {
 
@@ -34,7 +35,6 @@ class RestaurantViewController: UIViewController {
         location.titleEdgeInsets = UIEdgeInsetsMake(0,10,0,0)
         location.setImage(UIImage(named: "location_nearby_position"), forState: UIControlState.Normal)
         location.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        location.setTitle("第八区", forState: UIControlState.Normal)
         return location
     }()
 
@@ -54,7 +54,17 @@ class RestaurantViewController: UIViewController {
         return tool
     }()
 
+    lazy var locationManager:CLLocationManager = {
+        var manager = CLLocationManager()
+        manager.delegate = self
+        manager.allowsBackgroundLocationUpdates = true
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        return manager
+    }()
+
     @objc func refreshLocation(){
+        getLocation()
 
     }
 
@@ -64,6 +74,17 @@ class RestaurantViewController: UIViewController {
         navigationController?.navigationBar.addSubview(rightItem)
         navigationController?.navigationBar.addSubview(searchView)
         view.addSubview(toolView)
+        getLocation()
+    }
+
+    private func getLocation(){
+        location.setTitle("天网正在定位...", forState: UIControlState.Normal)
+        if CLLocationManager.locationServicesEnabled() == false {
+            print("请打开定位服务")
+        }
+//        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     override func viewWillLayoutSubviews() {
@@ -99,7 +120,7 @@ class RestaurantViewController: UIViewController {
         location.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(toolView.snp_center)
             make.height.equalTo(20)
-            make.width.equalTo(100)
+            make.width.equalTo(SCREEN_RECT().width)
         }
 
         refresh.snp_makeConstraints { (make) -> Void in
@@ -136,5 +157,51 @@ extension RestaurantViewController : UISearchBarDelegate{
         searchView.endEditing(true)
 //        searchView.resignFirstResponder()
 
+    }
+}
+
+extension RestaurantViewController:CLLocationManagerDelegate{
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location:CLLocation = locations[locations.count-1]
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location) { (let place, let error) -> Void in
+            let place = place?.first
+            self.location.setTitle(place?.name, forState: UIControlState.Normal)
+        }
+        locationManager.stopUpdatingLocation()
+    }
+
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status{
+        case .NotDetermined:
+            print("未确认")
+            break
+        case .Denied:
+            if CLLocationManager.locationServicesEnabled() {
+                print("真正拒绝了")
+            }
+            else{
+                print("定位服务关闭了")
+                let url = NSURL(string:UIApplicationOpenSettingsURLString)
+                if UIApplication.sharedApplication().canOpenURL(url!){
+                    UIApplication.sharedApplication().openURL(url!)
+                }
+            }
+            print("无法开启")
+            break
+        case .AuthorizedAlways:
+            print("常用")
+            break
+        case .AuthorizedWhenInUse:
+            print("用时用")
+            break
+        case .Restricted:
+            print("拒绝")
+            break
+        }
     }
 }
