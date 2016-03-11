@@ -12,6 +12,7 @@ import SnapKit
 class MineViewController: UIViewController {
 
     let ID = "cell"
+    var tableViewConstraint:Constraint?
     var originOffset :CGFloat = 0
 
 
@@ -23,15 +24,15 @@ class MineViewController: UIViewController {
 
     lazy var backImage:UIImageView = {
         let back = UIImageView(image: UIImage(named: "lol"))
-        let tap = UITapGestureRecognizer(target: self, action: "tapBackImage")
-        back.addGestureRecognizer(tap)
-        back.userInteractionEnabled = true
         return back
     }()
 
     lazy var containView:UIView = {
         var view = UIView()
-        view.backgroundColor = UIColor.redColor()
+        let tap = UITapGestureRecognizer(target: self, action: "tapBackImage")
+        view.addGestureRecognizer(tap)
+        view.userInteractionEnabled = true
+        view.backgroundColor = UIColor.clearColor()
         view.addSubview(self.icon)
         view.addSubview(self.nameLabel)
         view.addSubview(self.timeLabel)
@@ -80,19 +81,25 @@ class MineViewController: UIViewController {
 
 
     lazy var tableView:UITableView = {
-        var tab = UITableView(frame: SCREEN_RECT(), style: UITableViewStyle.Grouped)
+        var tab = UITableView(frame:CGRectZero, style: UITableViewStyle.Grouped)
         tab.tableFooterView = UIView()
-        tab.contentInset = UIEdgeInsetsMake(SCREEN_RECT().width*0.8-35,0,0,0)
+        tab.scrollEnabled = false
+        tab.contentInset = UIEdgeInsetsMake(-40,0,0,0)
         tab.sectionHeaderHeight = 0
         tab.sectionFooterHeight = 10
         tab.delegate = self
         tab.dataSource = self
+
         return tab
     }()
 
     lazy var scrollView:UIScrollView = {
         var s = UIScrollView(frame: SCREEN_RECT())
+        s.contentSize = CGSizeMake(SCREEN_RECT().size.width,SCREEN_RECT().size.height*1.01)
         s.userInteractionEnabled = true
+        s.showsVerticalScrollIndicator = false
+        s.backgroundColor = UIColor.whiteColor()
+        s.delegate = self
         return s
     }()
 
@@ -138,68 +145,72 @@ class MineViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
         backImage.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_RECT().width)
-            make.height.equalTo(SCREEN_RECT().width*0.8)
-            make.top.equalTo(view.snp_top)
+            make.height.equalTo(SCREEN_RECT().width)
+            make.top.equalTo(-44)
+        }
+
+        tableView.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_RECT().width)
+            make.height.equalTo(150)
+            tableViewConstraint = make.top.equalTo(backImage.snp_bottom).offset(-45).constraint
         }
 
         containView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_RECT().width)
             make.height.equalTo(SCREEN_RECT().width*0.6)
-            make.top.equalTo(backImage.snp_top)
+            make.bottom.equalTo(tableView.snp_top)
         }
 
         icon.snp_makeConstraints { (make) -> Void in
-//            make.width.height.equalTo(80)
-            make.centerX.equalTo(view.snp_centerX)
-            make.top.equalTo(view).offset(50)
+            make.centerX.equalTo(containView.snp_centerX)
+            make.top.equalTo(containView).offset(50)
         }
 
         nameLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(icon.snp_bottom)
-            make.centerX.equalTo(view.snp_centerX)
+            make.centerX.equalTo(containView.snp_centerX)
         }
 
         timeLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(view.snp_centerX)
+            make.centerX.equalTo(containView.snp_centerX)
             make.top.equalTo(nameLabel.snp_bottom).offset(20)
         }
 
         scoreLabel.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(35)
             make.height.equalTo(15)
-            make.centerX.equalTo(view.snp_centerX)
+            make.centerX.equalTo(containView.snp_centerX)
             make.top.equalTo(timeLabel.snp_bottom).offset(5)
         }
 
-        toolView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_RECT().width)
-            make.height.equalTo(44)
-//            make.top.equalTo(containView.snp_bottom)
-        }
+//        toolView.snp_makeConstraints { (make) -> Void in
+//            make.width.equalTo(SCREEN_RECT().width)
+//            make.height.equalTo(44)
+////            make.top.equalTo(containView.snp_bottom)
+//        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        originOffset = self.tableView.contentOffset.y
+        self.view.backgroundColor = UIColor.clearColor()
         self.automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "my_center_setting_icon"), style: UIBarButtonItemStyle.Plain, target: self, action: "set")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_friend_normal"), style: UIBarButtonItemStyle.Plain, target: self, action: "add")
         view.backgroundColor = UIColor.lightGrayColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ID)
         view.addSubview(scrollView)
-        scrollView.addSubview(tableView)
         scrollView.addSubview(backImage)
+        scrollView.addSubview(tableView)
         scrollView.addSubview(containView)
-        scrollView.didAddSubview(toolView)
+//        scrollView.didAddSubview(toolView)
     }
 }
 
 extension MineViewController: UITableViewDelegate,UITableViewDataSource{
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -215,13 +226,37 @@ extension MineViewController: UITableViewDelegate,UITableViewDataSource{
         return cell!
     }
 
+}
+
+extension MineViewController : UIScrollViewDelegate{
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
-        let delta = offset - originOffset
-        backImage.frame.origin.y = -delta
+        if offset < 0 {
+            if abs(offset) < 45 {
+                tableViewConstraint?.uninstall()
+                tableView.snp_updateConstraints(closure: { (make) -> Void in
+                    make.top.equalTo(backImage.snp_bottom).offset(-45+abs(offset))
+                })
+            }
+            else if abs(offset) > 45{
+                tableViewConstraint?.uninstall()
+                tableView.snp_updateConstraints { (make) -> Void in
+                    make.top.equalTo(backImage.snp_bottom)
+                }
+            }
+        }else if offset > 0 {
+            tableViewConstraint?.uninstall()
+            tableView.snp_updateConstraints(closure: { (make) -> Void in
+                make.top.equalTo(backImage.snp_bottom).offset(-45-abs(offset))
+            })
+        }
     }
 
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-            self.backImage.frame.origin.y = 0
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        backImage.frame.origin.y = 0
+        tableViewConstraint?.uninstall()
+        tableView.snp_updateConstraints { (make) -> Void in
+            make.top.equalTo(backImage.snp_bottom).offset(-45)
+        }
     }
 }

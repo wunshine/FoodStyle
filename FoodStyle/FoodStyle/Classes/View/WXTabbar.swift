@@ -39,7 +39,7 @@ class WXTabbar: UITabBar {
             }
             originX = i * width
             button.frame = CGRectMake(originX, originY, width, height)
-//            button.tag = i 
+//            button.tag = i
             i++
             let butto:UIButton = button as! UIButton
            butto.addTarget(self, action: "buttonClick:", forControlEvents: .TouchUpInside)
