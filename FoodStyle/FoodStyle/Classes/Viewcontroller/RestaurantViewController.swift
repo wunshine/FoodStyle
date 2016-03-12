@@ -42,7 +42,7 @@ class RestaurantViewController: UIViewController {
         var refresh = UIButton()
         refresh.setImage(UIImage(named: "location_nearby_refresh"), forState: UIControlState.Normal)
         refresh.highlighted = true
-        refresh.addTarget(self, action: "refreshLocation", forControlEvents: .TouchUpInside)
+        refresh.addTarget(self, action: "getLocation", forControlEvents: .TouchUpInside)
         return refresh
     }()
 
@@ -63,29 +63,28 @@ class RestaurantViewController: UIViewController {
         return manager
     }()
 
-    @objc func refreshLocation(){
-        getLocation()
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blueColor()
         navigationController?.navigationBar.addSubview(rightItem)
         navigationController?.navigationBar.addSubview(searchView)
         view.addSubview(toolView)
+    }
+
+    override func viewWillAppear(animated: Bool) {
         getLocation()
     }
 
-    private func getLocation(){
-        location.setTitle("天网正在定位...", forState: UIControlState.Normal)
-        if CLLocationManager.locationServicesEnabled() == false {
-            print("请打开定位服务")
-        }
-//        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+    @objc private func getLocation(){
+        let animation = CABasicAnimation()
+        animation.duration = 5.0
+        animation.fromValue = 0
+        animation.toValue = 360
+        animation.keyPath = "transform.rotation.z"
+        refresh.layer.addAnimation(animation, forKey: "rotation")
         locationManager.startUpdatingLocation()
-    }
+        location.setTitle("天网正在定位...", forState: UIControlState.Normal)
+           }
 
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -169,35 +168,46 @@ extension RestaurantViewController:CLLocationManagerDelegate{
             self.location.setTitle(place?.name, forState: UIControlState.Normal)
         }
         locationManager.stopUpdatingLocation()
+        refresh.layer.removeAnimationForKey("rotation")
     }
 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
+        location.setTitle("定位失败", forState: UIControlState.Normal)
+        refresh.layer.removeAnimationForKey("rotation")
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch status{
         case .NotDetermined:
-            print("未确认")
+            print("未确认授不授权")
             break
         case .Denied:
             if CLLocationManager.locationServicesEnabled() {
-                print("真正拒绝了")
+                print("定位服务关闭了")
+                let alert = UIAlertController(title: "定位服务被关闭", message: "你TM到底用不用?", preferredStyle: UIAlertControllerStyle.Alert)
+                let openSet = UIAlertAction(title: "我用用用", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+                        let url = NSURL(string:UIApplicationOpenSettingsURLString)
+                        if UIApplication.sharedApplication().canOpenURL(url!){
+                            UIApplication.sharedApplication().openURL(url!)
+                        }
+                })
+                let cancel = UIAlertAction(title: "我不用", style: UIAlertActionStyle.Cancel, handler: nil)
+                alert.addAction(openSet)
+                alert.addAction(cancel)
+                presentViewController(alert, animated: true , completion: nil)
+
             }
             else{
-                print("定位服务关闭了")
-                let url = NSURL(string:UIApplicationOpenSettingsURLString)
-                if UIApplication.sharedApplication().canOpenURL(url!){
-                    UIApplication.sharedApplication().openURL(url!)
-                }
+                print("被主人残忍拒绝")
             }
-            print("无法开启")
+            print("无法开启定位服务")
             break
         case .AuthorizedAlways:
-            print("常用")
+            print("可以常用定位服务")
             break
         case .AuthorizedWhenInUse:
-            print("用时用")
+            print("要用的时候才给用定位服务")
             break
         case .Restricted:
             print("拒绝")
@@ -205,3 +215,5 @@ extension RestaurantViewController:CLLocationManagerDelegate{
         }
     }
 }
+
+//extension RestaurantViewController:

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let launchVC = WXNavigationController(rootViewController: sb.instantiateInitialViewController()!)
         self.window?.rootViewController = launchVC
         self.window?.makeKeyAndVisible()
+
+        if CLLocationManager.locationServicesEnabled() == false {
+            print("请打开定位服务")
+            if UIApplication.sharedApplication().canOpenURL(NSURL(string: UIApplicationOpenSettingsURLString)!){
+                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+            }
+        }
+        //        locationManager.requestAlwaysAuthorization()
+        LocationManager.sharedLocationManager.requestWhenInUseAuthorization()
         return true
     }
 
