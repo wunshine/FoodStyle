@@ -12,6 +12,8 @@ import CoreLocation
 
 class RestaurantViewController: UIViewController {
 
+    var searchBarConstraint:Constraint?
+
     lazy var searchView : UISearchBar = {
         var search = UISearchBar()
         search.delegate = self
@@ -75,6 +77,10 @@ class RestaurantViewController: UIViewController {
         getLocation()
     }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        searchView.endEditing(true)
+    }
+
     @objc private func getLocation(){
         let animation = CABasicAnimation()
         animation.duration = 5.0
@@ -95,7 +101,7 @@ class RestaurantViewController: UIViewController {
 
     private func constraintSearchBar(){
         searchView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_RECT().width-2*MARGIN())
+            searchBarConstraint = make.width.equalTo(SCREEN_RECT().width-2*MARGIN()).constraint
             make.left.equalTo(MARGIN())
             make.bottom.equalTo((self.navigationController?.navigationBar)!)
         }
@@ -133,29 +139,28 @@ class RestaurantViewController: UIViewController {
 
 extension RestaurantViewController : UISearchBarDelegate{
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBarConstraint?.uninstall()
         searchView.snp_updateConstraints { (make) -> Void in
-            make.left.equalTo(MARGIN())
+//            make.left.equalTo(MARGIN())
             make.width.equalTo(SCREEN_RECT().width-2*MARGIN()-CANCELBUTTON_WIDTH())
-            make.bottom.equalTo((self.navigationController?.navigationBar)!)
+//            make.bottom.equalTo((self.navigationController?.navigationBar)!)
             rightItem.hidden = false
         }
     }
 
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-//        var frame = searchView.frame
-//        frame.size.width += 60
-//        searchView.frame = frame
-        constraintSearchBar()
+        searchBarConstraint?.uninstall()
+        searchView.snp_updateConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_RECT().width-2*MARGIN())
+            rightItem.hidden = true 
+        }
+//        constraintSearchBar()
     }
 
     @objc private func cancel(){
         rightItem.hidden = true
-        var frame = searchView.frame
-        frame.size.width += 60
-        searchView.frame = frame
         searchView.endEditing(true)
-//        searchView.resignFirstResponder()
-
+        searchView.resignFirstResponder()
     }
 }
 
