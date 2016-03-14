@@ -109,7 +109,7 @@ class RestaurantViewController: UIViewController {
 
     private func constraintRightView(){
         rightItem.snp_makeConstraints(closure: { (make) -> Void in
-            make.left.equalTo(searchView.snp_right).offset(15)
+            make.right.equalTo((navigationController?.navigationBar.snp_right)!).offset(-10)
             make.centerY.equalTo(searchView.snp_centerY)
         })
 
@@ -141,9 +141,7 @@ extension RestaurantViewController : UISearchBarDelegate{
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBarConstraint?.uninstall()
         searchView.snp_updateConstraints { (make) -> Void in
-//            make.left.equalTo(MARGIN())
-            make.width.equalTo(SCREEN_RECT().width-2*MARGIN()-CANCELBUTTON_WIDTH())
-//            make.bottom.equalTo((self.navigationController?.navigationBar)!)
+        searchBarConstraint = make.width.equalTo(SCREEN_RECT().width-0.5*MARGIN()-CANCELBUTTON_WIDTH()).constraint
             rightItem.hidden = false
         }
     }
@@ -151,10 +149,9 @@ extension RestaurantViewController : UISearchBarDelegate{
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         searchBarConstraint?.uninstall()
         searchView.snp_updateConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_RECT().width-2*MARGIN())
-            rightItem.hidden = true 
+                make.width.equalTo(SCREEN_RECT().width-2*MARGIN()).constraint
+            rightItem.hidden = true
         }
-//        constraintSearchBar()
     }
 
     @objc private func cancel(){
@@ -172,6 +169,7 @@ extension RestaurantViewController:CLLocationManagerDelegate{
             let place = place?.first
             self.location.setTitle(place?.name, forState: UIControlState.Normal)
         }
+
         locationManager.stopUpdatingLocation()
         refresh.layer.removeAnimationForKey("rotation")
     }
@@ -197,6 +195,7 @@ extension RestaurantViewController:CLLocationManagerDelegate{
                             UIApplication.sharedApplication().openURL(url!)
                         }
                 })
+
                 let cancel = UIAlertAction(title: "我不用", style: UIAlertActionStyle.Cancel, handler: nil)
                 alert.addAction(openSet)
                 alert.addAction(cancel)
@@ -220,5 +219,3 @@ extension RestaurantViewController:CLLocationManagerDelegate{
         }
     }
 }
-
-//extension RestaurantViewController:

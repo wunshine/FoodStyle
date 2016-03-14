@@ -155,7 +155,7 @@ class MineViewController: UIViewController {
         tableView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_RECT().width)
             make.height.equalTo(200)
-            tableViewConstraint = make.top.equalTo(backImage.snp_bottom).offset(-45).constraint
+            tableViewConstraint = make.top.equalTo(backImage.snp_bottom).offset(-65).constraint
         }
 
         containView.snp_makeConstraints { (make) -> Void in

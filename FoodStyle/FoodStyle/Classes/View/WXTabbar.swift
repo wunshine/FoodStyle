@@ -9,9 +9,17 @@
 import UIKit
 
 class WXTabbar: UITabBar {
-    internal func WXTabbar(){
+
+    override init(frame: CGRect) {
+        super.init(frame:frame)
         addSubview(cameroButton)
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("没有实现这个方法")
+    }
+    
+    var preSelectIndex:NSInteger?
 
     private var cameroButton:UIButton = {
         var camero = UIButton(type: .Custom)
@@ -22,7 +30,6 @@ class WXTabbar: UITabBar {
         return camero
     }()
 
-    var preSelectIndex:NSInteger?
 
     override func layoutSubviews() {
         addSubview(cameroButton)
@@ -41,13 +48,14 @@ class WXTabbar: UITabBar {
             button.frame = CGRectMake(originX, originY, width, height)
 //            button.tag = i
             i++
-            let butto:UIButton = button as! UIButton
-           butto.addTarget(self, action: "buttonClick:", forControlEvents: .TouchUpInside)
+//            if button.isKindOfClass(UIButton){
+//                button.addTarget(self, action: "buttonClick:", forControlEvents: .TouchUpInside)
+//            }
         }
         cameroButton.center = self.center
     }
 
-        func buttonClick(tabbar:UIControl){
+        @objc private func buttonClick(tabbar:UIButton){
 //            if tabbar.tag == preSelectIndex{
                 print("doubleCick")
 //            }

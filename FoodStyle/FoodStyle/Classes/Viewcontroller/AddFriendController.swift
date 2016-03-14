@@ -63,7 +63,7 @@ extension AddFriendController{
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headLabel = UILabel(frame: CGRectMake(0,0,SCREEN_RECT().width,15))
+        let headLabel = UILabel(frame: CGRectMake(10,0,SCREEN_RECT().width,15))
         headLabel.backgroundColor = UIColor.lightGrayColor()
         switch section{
         case 0:
