@@ -10,6 +10,13 @@ import UIKit
 
 class WXTabbarController: UITabBarController {
 
+    var car :UIWindow?
+    var carButton:UIButton?
+    var clickCount:NSInteger = 0
+
+    var alertWindow:UIWindow?
+    var alert:UIButton?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.tabBar.removeFromSuperview()
@@ -20,6 +27,60 @@ class WXTabbarController: UITabBarController {
         self.automaticallyAdjustsScrollViewInsets = false
         setChildViewController()
         setTabbar()
+        setShopCar()
+
+    }
+
+    private func setShopCar(){
+
+        alert = UIButton(frame: CGRectMake(0,0,30,30))
+        alert?.layer.cornerRadius = 15
+        alert?.setTitle("卖", forState: UIControlState.Normal)
+        alert?.addTarget(self, action: "noShoping", forControlEvents: UIControlEvents.TouchUpInside)
+
+        alertWindow = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
+        alertWindow?.layer.cornerRadius = 15
+        alertWindow?.windowLevel = UIWindowLevelAlert+1
+        alertWindow?.backgroundColor = UIColor.orangeColor()
+        alertWindow?.addSubview(alert!)
+        alertWindow?.makeKeyAndVisible()
+
+
+        carButton = UIButton(frame: CGRectMake(0,0,30,30))
+        carButton?.layer.cornerRadius = 15
+        carButton?.setTitle("买", forState: UIControlState.Normal)
+        carButton?.addTarget(self, action: "shoping", forControlEvents: UIControlEvents.TouchUpInside)
+
+        car = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
+        car?.layer.cornerRadius = 15
+        car?.windowLevel = UIWindowLevelAlert+2
+        car?.backgroundColor = UIColor.purpleColor()
+        car?.addSubview(carButton!)
+        car?.makeKeyAndVisible()
+
+            }
+
+
+    @objc func shoping(){
+        clickCount++
+        if clickCount%2 == 0{
+            let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotation.fromValue = 360
+            rotation.toValue = 0
+            carButton?.layer.addAnimation(rotation, forKey: "")
+            self.alertWindow?.frame.origin.x += 40
+        }else if clickCount%2 == 1{
+            let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotation.fromValue = 0
+            rotation.toValue = 360
+            carButton?.layer.addAnimation(rotation, forKey: "")
+            self.alertWindow?.frame.origin.x -= 40
+            print("shoping")
+        }
+    }
+
+    @objc func noShoping(){
+        print("no-shoping")
     }
 
     private func setChildViewController(){
