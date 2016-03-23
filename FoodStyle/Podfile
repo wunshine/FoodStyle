@@ -1,5 +1,5 @@
-platform :ios, "9.0"
+platform :ios, '9.0'
 use_frameworks!
-pod "SnapKit", '~> 0.19.1'
+pod 'SnapKit', '~> 0.19.1'
 pod 'Alamofire', '~> 3.2.1'
-pod "WeiboSDK"
+pod 'WeiboSDK'

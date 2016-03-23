@@ -16,6 +16,11 @@ class MineViewController: UIViewController {
     var originOffset :CGFloat = 0
 
 
+    lazy var refresh : UIRefreshControl = {
+        var refresh = UIRefreshControl(frame: CGRectMake(0,0,30,30))
+        return refresh
+    }()
+
     lazy var toolView:UIView = {
         var tool = UIView()
         tool.backgroundColor = UIColor.yellowColor()
@@ -202,6 +207,7 @@ class MineViewController: UIViewController {
         view.backgroundColor = UIColor.lightGrayColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: ID)
         view.addSubview(scrollView)
+//        scrollView.addSubview(refresh)
         scrollView.addSubview(backImage)
         scrollView.addSubview(tableView)
         scrollView.addSubview(containView)
@@ -253,11 +259,17 @@ extension MineViewController : UIScrollViewDelegate{
         }
     }
 
-    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+//    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+//        self.refresh.beginRefreshing()
+//    }
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//        self.refresh.beginRefreshing()
         backImage.frame.origin.y = 0
         tableViewConstraint?.uninstall()
         tableView.snp_updateConstraints { (make) -> Void in
             make.top.equalTo(backImage.snp_bottom).offset(-45)
         }
+
     }
 }

@@ -20,9 +20,7 @@ class WXTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.tabBar.removeFromSuperview()
-//        let tabar = WXTabbar()
-//        self.tabBar.addSubview(tabar)
-//        self.setValue(tabar, forKeyPath: "tabBar")
+        self.setValue(WXTabbar(), forKeyPath: "tabBar")
         self.view.backgroundColor = UIColor.redColor()
         self.automaticallyAdjustsScrollViewInsets = false
         setChildViewController()
@@ -65,14 +63,20 @@ class WXTabbarController: UITabBarController {
         clickCount++
         if clickCount%2 == 0{
             let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
-            rotation.fromValue = 360
+            rotation.removedOnCompletion = false
+            rotation.autoreverses = false
+            rotation.fillMode = "forwards"
+            rotation.fromValue = 180
             rotation.toValue = 0
             carButton?.layer.addAnimation(rotation, forKey: "")
             self.alertWindow?.frame.origin.x += 40
         }else if clickCount%2 == 1{
             let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotation.autoreverses = false
+            rotation.fillMode = "forwads"
+            rotation.removedOnCompletion = false
             rotation.fromValue = 0
-            rotation.toValue = 360
+            rotation.toValue = 180
             carButton?.layer.addAnimation(rotation, forKey: "")
             self.alertWindow?.frame.origin.x -= 40
             print("shoping")

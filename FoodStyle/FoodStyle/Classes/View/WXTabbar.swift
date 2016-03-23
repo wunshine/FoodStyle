@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WXTabbar: UITabBar {
+class WXTabbar: UITabBar{
 
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -32,34 +32,34 @@ class WXTabbar: UITabBar {
 
 
     override func layoutSubviews() {
-        addSubview(cameroButton)
         super.layoutSubviews()
-        let count = (CGFloat)(subviews.count+1)
+        let count = (CGFloat)(self.subviews.count/2+1)
         let width = self.frame.width/count
         let height = self.frame.height
-        var originX:CGFloat = 0 as CGFloat
-        let originY:CGFloat = 10 as CGFloat
-        var i:CGFloat =  0 as CGFloat
+        var originX:CGFloat = 0
+        let originY:CGFloat = 10
+        var i:CGFloat =  0
         for button in self.subviews{
-            if i == 2 {
-                i += 1
+            if button.isKindOfClass(NSClassFromString("UITabBarButton")!){
+//                if i == 2 {
+//                    i += 1
+//                }
+                originX = i * width
+                button.frame = CGRectMake(originX, originY, width, height)
+                button.tag = NSInteger(i)
+                i++
             }
-            originX = i * width
-            button.frame = CGRectMake(originX, originY, width, height)
-//            button.tag = i
-            i++
-//            if button.isKindOfClass(UIButton){
-//                button.addTarget(self, action: "buttonClick:", forControlEvents: .TouchUpInside)
+//            print(self.subviews)
 //            }
         }
         cameroButton.center = self.center
     }
 
         @objc private func buttonClick(tabbar:UIButton){
-//            if tabbar.tag == preSelectIndex{
+            if tabbar.tag == preSelectIndex{
                 print("doubleCick")
-//            }
-//            preSelectIndex = tabbar.tag
+            }
+            preSelectIndex = tabbar.tag
 
 //        }
     }

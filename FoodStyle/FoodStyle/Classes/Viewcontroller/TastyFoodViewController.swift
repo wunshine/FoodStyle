@@ -12,6 +12,18 @@ class TastyFoodViewController: UITableViewController {
 
     var selectedButton:UIButton?
 
+//    var headView : SectionHeadView = {
+//        let head = SectionHeadView(frame: CGRectMake(0,0,SCREEN_RECT().width,64))
+//        print(head)
+//        head.backgroundColor = UIColor.redColor()
+//        return head
+//    }()
+
+    lazy var refresh : UIRefreshControl = {
+        var refresh = UIRefreshControl(frame: CGRectMake(0,0,30,30))
+        return refresh
+    }()
+
     lazy var rightButton : UIButton = {
         var right = WXButton(frame: CGRectMake(0, 0, 60, 44), title: "关注", target: self, action: "follow")
         return right
@@ -29,10 +41,14 @@ class TastyFoodViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.yellowColor()
-        self.navigationItem.titleView = titleView
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.leftButton)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView:self.rightButton)
+        tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
+        tableView.sectionHeaderHeight = 64
+//        tableView.sectionFooterHeight = 0
+        view.backgroundColor = UIColor.whiteColor()
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.leftButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView:self.rightButton)
+        tableView.addSubview(refresh)
         choosed()
 
     }
@@ -70,20 +86,51 @@ class TastyFoodViewController: UITableViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-    /*
-    // MARK: - Navigation
+    override func viewDidLayoutSubviews() {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+}
+
+extension TastyFoodViewController{
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 10
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let ID = "cell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(ID)
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ID)
+        }
+        cell?.textLabel?.text = "test"
+        return cell!
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let headView = SectionHeadView(frame: CGRectMake(0,0,SCREEN_RECT().width,64))
+        print(headView)
+        headView.backgroundColor = UIColor.init(white: 1, alpha: 0.85)
+        return headView
+    }
+}
+
+extension TastyFoodViewController{
+
+    override func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        refresh.beginRefreshing()
+    }
+
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+            self.refresh.endRefreshing()
+    }
 
 }
+
+
