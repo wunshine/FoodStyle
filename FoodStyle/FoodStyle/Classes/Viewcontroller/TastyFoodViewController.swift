@@ -11,13 +11,8 @@ import UIKit
 class TastyFoodViewController: UITableViewController {
 
     var selectedButton:UIButton?
-
-//    var headView : SectionHeadView = {
-//        let head = SectionHeadView(frame: CGRectMake(0,0,SCREEN_RECT().width,64))
-//        print(head)
-//        head.backgroundColor = UIColor.redColor()
-//        return head
-//    }()
+    let ID = "DiaryCell"
+    let Head = "HeadView"
 
     lazy var refresh : UIRefreshControl = {
         var refresh = UIRefreshControl(frame: CGRectMake(0,0,30,30))
@@ -44,6 +39,8 @@ class TastyFoodViewController: UITableViewController {
         tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
         tableView.sectionHeaderHeight = 64
 //        tableView.sectionFooterHeight = 0
+        tableView.registerClass(NSClassFromString("DiaryTableViewCell"), forCellReuseIdentifier: ID)
+        tableView.registerClass(NSClassFromString("SectionHeadView"), forCellReuseIdentifier: Head)
         view.backgroundColor = UIColor.whiteColor()
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.leftButton)
@@ -95,7 +92,7 @@ class TastyFoodViewController: UITableViewController {
 extension TastyFoodViewController{
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 10
+        return 20
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,20 +100,25 @@ extension TastyFoodViewController{
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let ID = "cell"
         var cell = tableView.dequeueReusableCellWithIdentifier(ID)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: ID)
+            cell = DiaryCell(style: UITableViewCellStyle.Default, reuseIdentifier: ID)
         }
-        cell?.textLabel?.text = "test"
+//        cell?.textLabel?.text = "test"
         return cell!
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 360
+    }
 
-        let headView = SectionHeadView(frame: CGRectMake(0,0,SCREEN_RECT().width,64))
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headView = tableView.dequeueReusableCellWithIdentifier(Head)
+        if headView == nil {
+            headView = SectionHeadView(style: UITableViewCellStyle.Default, reuseIdentifier: Head)
+        }
         print(headView)
-        headView.backgroundColor = UIColor.init(white: 1, alpha: 0.85)
+        headView!.backgroundColor = UIColor.init(white: 1, alpha: 0.85)
         return headView
     }
 }

@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import SnapKit
 
-class SectionHeadView : UIView{
+class SectionHeadView : UITableViewCell{
+
+//    let Head = "HeadView"
 
     var model : SectionHeadViewModel{
         set{
@@ -57,12 +58,17 @@ class SectionHeadView : UIView{
         return follow
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(icon)
         addSubview(location)
         addSubview(nickName)
         addSubview(follow)
+
     }
 
     required init?(coder aDecoder: NSCoder) {
