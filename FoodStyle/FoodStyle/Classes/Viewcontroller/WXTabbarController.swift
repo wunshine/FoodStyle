@@ -30,33 +30,32 @@ class WXTabbarController: UITabBarController {
     }
 
     private func setShopCar(){
+            alert = UIButton(frame: CGRectMake(0,0,30,30))
+            alert?.layer.cornerRadius = 15
+            alert?.setTitle("卖", forState: UIControlState.Normal)
+            alert?.addTarget(self, action: "noShoping", forControlEvents: UIControlEvents.TouchUpInside)
 
-        alert = UIButton(frame: CGRectMake(0,0,30,30))
-        alert?.layer.cornerRadius = 15
-        alert?.setTitle("卖", forState: UIControlState.Normal)
-        alert?.addTarget(self, action: "noShoping", forControlEvents: UIControlEvents.TouchUpInside)
-
-        alertWindow = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
-        alertWindow?.layer.cornerRadius = 15
-        alertWindow?.windowLevel = UIWindowLevelAlert+1
-        alertWindow?.backgroundColor = UIColor.orangeColor()
-        alertWindow?.addSubview(alert!)
-        alertWindow?.makeKeyAndVisible()
+            alertWindow = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
+            alertWindow?.layer.cornerRadius = 15
+            alertWindow?.windowLevel = UIWindowLevelAlert+1
+            alertWindow?.backgroundColor = UIColor.orangeColor()
+            alertWindow?.addSubview(alert!)
+            alertWindow?.makeKeyAndVisible()
 
 
-        carButton = UIButton(frame: CGRectMake(0,0,30,30))
-        carButton?.layer.cornerRadius = 15
-        carButton?.setTitle("买", forState: UIControlState.Normal)
-        carButton?.addTarget(self, action: "shoping", forControlEvents: UIControlEvents.TouchUpInside)
+            carButton = UIButton(frame: CGRectMake(0,0,30,30))
+            carButton?.layer.cornerRadius = 15
+            carButton?.setTitle("买", forState: UIControlState.Normal)
+            carButton?.addTarget(self, action: "shoping", forControlEvents: UIControlEvents.TouchUpInside)
 
-        car = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
-        car?.layer.cornerRadius = 15
-        car?.windowLevel = UIWindowLevelAlert+2
-        car?.backgroundColor = UIColor.purpleColor()
-        car?.addSubview(carButton!)
-        car?.makeKeyAndVisible()
+            car = UIWindow(frame: CGRectMake(SCREEN_RECT().width-40,SCREEN_RECT().height-120,30,30))
+            car?.layer.cornerRadius = 15
+            car?.windowLevel = UIWindowLevelAlert+2
+            car?.backgroundColor = UIColor.purpleColor()
+            car?.addSubview(carButton!)
+            car?.makeKeyAndVisible()
 
-            }
+        }
 
 
     @objc func shoping(){

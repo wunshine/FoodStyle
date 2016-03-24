@@ -19,7 +19,7 @@ class DiaryCell : UITableViewCell {
     }
 
     var picture:UIImageView = {
-        var pic = UIImageView(image: UIImage(named: "watermark_left_state_1"))
+        var pic = UIImageView(image: UIImage(named: "coreAnimation"))
         return pic
     }()
 
@@ -32,7 +32,8 @@ class DiaryCell : UITableViewCell {
 
     var title:UILabel = {
         let title = UILabel()
-        title.text = "吃货志"
+        title.font = UIFont.systemFontOfSize(10)
+        title.text = "#吃货志#"
         title.sizeToFit()
         return title
     }()
@@ -72,6 +73,8 @@ class DiaryCell : UITableViewCell {
         layout.minimumLineSpacing = 0
         var people = UICollectionView(frame: CGRectMake(0,0,SCREEN_RECT().width-20,44), collectionViewLayout: layout)
         var item = UICollectionViewCell()
+        people.backgroundColor = UIColor.yellowColor()
+        people.contentSize = CGSizeMake(SCREEN_RECT().width-20,44)
         item.contentView.addSubview(UIButton())
         return people
     }()

@@ -38,7 +38,7 @@ class TastyFoodViewController: UITableViewController {
         super.viewDidLoad()
         tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
         tableView.sectionHeaderHeight = 64
-//        tableView.sectionFooterHeight = 0
+        tableView.sectionFooterHeight = 0
         tableView.registerClass(NSClassFromString("DiaryTableViewCell"), forCellReuseIdentifier: ID)
         tableView.registerClass(NSClassFromString("SectionHeadView"), forCellReuseIdentifier: Head)
         view.backgroundColor = UIColor.whiteColor()
@@ -96,7 +96,7 @@ extension TastyFoodViewController{
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
